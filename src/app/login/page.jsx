@@ -6,6 +6,8 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const router = useRouter();
@@ -27,16 +29,23 @@ const Login = () => {
   const handlePasswordReset = () => {
     const { email } = formValues;
     if (!email) {
+      toast.warn("Please enter email first.", {
+        position: "top-right",
+      });
       console.log;
       ("Please enter your email first");
     }
     sendPasswordResetEmail(auth, email)
       .then(() => {
+        toast.success("Password reset email sent. Check your inbox.", {
+          position: "top-right",
+        });
         console.log("Password reset email sent. Check your inbox.");
       })
       .catch((error) => {
-        console.log;
-        "Error sending password reset email: " + error.message;
+        toast.error("Error in sending password reset email.", {
+          position: "top-right",
+        });
       });
   };
 
@@ -53,13 +62,22 @@ const Login = () => {
       const user = userCredential.user;
       if (user.emailVerified) {
         console.log("User logged in:", userCredential.user);
+        toast.success("Login successful!", {
+          position: "top-right",
+        });
         //router.push("/home");
       } else {
+        toast.warn("Please check your email and verify before logging in.", {
+          position: "top-right",
+        });
         console.log(
           "Email not verified. Please check your email and verify first"
         );
       }
     } catch (error) {
+      toast.error("Email or password is not correct", {
+        position: "top-right",
+      });
       console.error("Error logging in:", error.message);
     }
   };
@@ -130,6 +148,7 @@ const Login = () => {
         >
           Create An Account
         </button>
+        <ToastContainer />
       </div>
     </div>
   );

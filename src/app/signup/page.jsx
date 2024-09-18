@@ -7,6 +7,10 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../../../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { signUpSchema } from "@/formValidationSchema/schema";
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState({
@@ -16,6 +20,7 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+  const [hidePassword, setHidePassword] = useState("false");
   const router = useRouter();
   const backClick = (event) => {
     event.preventDefault(); // Prevent the default form submission
@@ -34,6 +39,9 @@ const SignUp = () => {
         password
       );
       console.log("User signed up:", userCredential);
+      toast.success("User Registerred!", {
+        position: "top-right",
+      });
 
       const user = userCredential.user;
 
@@ -43,6 +51,9 @@ const SignUp = () => {
       console.log(
         "Signup successful! Please check your email to verify your account."
       );
+      toast.success("Verification email send check email!", {
+        position: "top-right",
+      });
       setTimeout(() => {
         router.push("/login");
       }, 5000);
@@ -56,11 +67,14 @@ const SignUp = () => {
       console.log("data saved to db");
     } catch (error) {
       console.error("Error signing up:", error.message);
+      toast.error("Error signing up ", {
+        position: "top-right",
+      });
     }
     console.log(formValues);
   };
   return (
-    <div className="flex flex-col md:flex-row justify-between px-12 mx-16 mt-10">
+    <div className="flex flex-col md:flex-row justify-between md:px-12 px-6 md:mx-16 mt-10">
       <div className="md:w-1/2 mr-5 ">
         <h1 className="text-[18px] font-bold">PERSONAL INFORMATION</h1>
         <form onSubmit={handleFormSubmit} className="mt-6">
@@ -68,14 +82,23 @@ const SignUp = () => {
             <label htmlFor="" className="text-[13px] font-medium mb-2 ">
               First Name
             </label>
-            <input
-              type="text"
-              placeholder="First Name"
-              name="firstName"
-              value={setFormValues.firstName}
-              onChange={handleChange}
-              className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4"
-            />
+            <div>
+              <input
+                type="text"
+                placeholder="First Name"
+                name="firstName"
+                value={setFormValues.firstName}
+                onChange={handleChange}
+                className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4"
+              />
+              {/* <button
+                onClick={() => {
+                  setHidePassword(!hidePassword);
+                }}
+              >
+                Show
+              </button> */}
+            </div>
           </div>
           <div className="flex flex-col ">
             <label htmlFor="" className="text-[13px] font-medium mb-2">
@@ -154,6 +177,7 @@ const SignUp = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
