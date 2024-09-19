@@ -46,7 +46,7 @@ const Bestselling = () => {
                 {hoveredProductId === item.id && (
                   <>
                     <button
-                      className="absolute top-2/3 left-1/3 bg-white text-black rounded-3xl font-bold p-2 px-4"
+                      className="absolute top-2/3 left-1/3 bg-white text-black hover:bg-black hover:text-white rounded-3xl font-bold p-2 px-4"
                       onClick={() => handleAddToCartButtonClick(item.id)}
                     >
                       Add to cart

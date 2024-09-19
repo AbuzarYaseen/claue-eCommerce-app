@@ -46,7 +46,7 @@ const Trending = () => {
                   {hoveredProductId === item.id && (
                     <>
                       <button
-                        className="absolute top-28 font-semibold text-[14px] left-6 md:top-1/2 md:left-12 lg:top-2/3 lg:left-1/3 bg-white text-black rounded-3xl md:font-bold p-2 px-4"
+                        className="absolute top-28 font-semibold text-[14px] left-6 md:top-1/2 md:left-12 lg:top-2/3 lg:left-1/3 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
                         onClick={() => handleAddToCartButtonClick(item.id)}
                       >
                         Add to cart
