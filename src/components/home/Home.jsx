@@ -64,12 +64,12 @@ const Home = () => {
           </CarouselContent>
 
           {/* Previous button */}
-          <CarouselPrevious className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full text-white cursor-pointer">
+          <CarouselPrevious className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full text-white cursor-pointer">
             ‹
           </CarouselPrevious>
 
           {/* Next button */}
-          <CarouselNext className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full text-white cursor-pointer">
+          <CarouselNext className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full text-white cursor-pointer">
             ›
           </CarouselNext>
         </Carousel>
