@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../navBar/Navbar";
 import {
   Carousel,
   CarouselContent,
@@ -10,16 +9,19 @@ import {
 import "animate.css";
 import Trending from "./trending/Trending";
 import Bestselling from "./bestSelling/Bestselling";
+import Blog from "./blogComponent/Blog";
+import Social from "./socialComponent/Social";
+import Support from "./supportComponent/Support";
+import Hero from "./heroComponent/Hero";
 
 const Home = () => {
   return (
     <>
-      {/* <Navbar /> */}
       {/* <div className="container w-full mx-auto py-8 bg-slate-600"> */}
       <div className="relative w-full   bg-[#E2DAD3]">
         <Carousel className="relative overflow-hidden w-full">
           <CarouselContent className="flex h-72 md:h-auto space-x-4  transition-transform duration-300 ease-linear">
-            <CarouselItem className="w-full   md:p-8 rounded-md shadow-lg flex px-8 justify-around carousel1-background ">
+            <CarouselItem className="w-full   md:p-8 rounded-md shadow-lg flex px-8 justify-around carousel2-background ">
               <div className="flex flex-col md:px-12 py-12">
                 <div className="md:w-2/4 animate__animated animate__slideInLeft">
                   <h1 className="font-bold hidden md:block md:text-[18px] italic mb-7">
@@ -75,8 +77,12 @@ const Home = () => {
         </Carousel>
       </div>
       {/* </div> */}
+      <Hero></Hero>
       <Trending></Trending>
       <Bestselling></Bestselling>
+      <Blog></Blog>
+      <Social></Social>
+      <Support></Support>
     </>
   );
 };

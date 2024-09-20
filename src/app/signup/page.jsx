@@ -175,7 +175,7 @@ const SignUp = () => {
                         e.preventDefault();
                         setShowPassword((prev) => !prev);
                       }}
-                      className="absolute top-[505px] sm:top-[352px] lg:top-[320px] xl:top-[465px] left-3/4 sm:left-[78%] lg:left-[84%] xl:left-[88%] text-[13px]"
+                      className="absolute top-[570px] sm:top-[415px] lg:top-[460px] xl:top-[525px] left-3/4 sm:left-[78%] lg:left-[84%] xl:left-[88%] text-[13px]"
                     >
                       {showPassword ? "Show" : "Hide"}
                     </button>
@@ -202,7 +202,7 @@ const SignUp = () => {
                         e.preventDefault();
                         setShowConfirmPass((prev) => !prev);
                       }}
-                      className="absolute top-[590px] sm:top-[435px] lg:top-[400px] xl:top-[550px] left-3/4 sm:left-[78%] lg:left-[84%] xl:left-[88%] text-[13px]"
+                      className="absolute top-[650px] sm:top-[500px] lg:top-[550px] xl:top-[603px] left-3/4 sm:left-[78%] lg:left-[84%] xl:left-[88%] text-[13px]"
                     >
                       {showConfirmPass ? "Show" : "Hide"}
                     </button>
