@@ -52,7 +52,7 @@ const Navbar = () => {
           className="hover:cursor-pointer"
         />
       </div>
-
+      {/* testing user git username and email */}
       {/* Normal Navbar for larger screens */}
       <div className="hidden lg:flex">
         <ul className="flex flex-row space-x-14">
