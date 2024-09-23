@@ -124,7 +124,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="md:px-14 py-5 flex justify-center md:justify-between ">
-        <p className="text-[#777977]"> © 2024 Copyright By Abuzar.</p>
+        <p className="text-[#777977]"> © 2024 Copyright By CyberEvanglists.</p>
         <div className="hidden md:block text-[#777977]">
           <ul className="flex flex-row gap-3">
             <li className="hover:cursor-pointer hover:text-[#CF9784]">

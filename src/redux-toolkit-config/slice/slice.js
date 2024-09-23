@@ -3,6 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   count: 0,
   cart: [],
+  totalAmount: 0,
+};
+
+const calculateTotalAmount = (cart) => {
+  return cart.reduce(
+    (acc, item) => acc + item.subTotal, // Use subTotal for total amount
+    0
+  );
+};
+
+const calculateItemSubTotal = (price, quantity) => {
+  return Number(price) * (Number(quantity) || 1);
 };
 
 export const cartSlice = createSlice({
@@ -18,11 +30,20 @@ export const cartSlice = createSlice({
       if (itemIndex >= 0) {
         // If item exists, increment its quantity
         state.cart[itemIndex].quantity += 1;
+        state.cart[itemIndex].subTotal = calculateItemSubTotal(
+          state.cart[itemIndex].price,
+          state.cart[itemIndex].quantity
+        );
       } else {
-        // If item doesn't exist, add it to the cart with quantity 1
-        state.cart.push({ ...action.payload, quantity: 1 });
+        const newItem = {
+          ...action.payload,
+          quantity: 1,
+          subTotal: calculateItemSubTotal(action.payload.price, 1),
+        };
+        state.cart.push(newItem);
       }
       state.count = state.cart.length;
+      state.totalAmount = calculateTotalAmount(state.cart);
     },
 
     // Increment quantity for a specific item
@@ -32,7 +53,12 @@ export const cartSlice = createSlice({
       );
       if (itemIndex >= 0) {
         state.cart[itemIndex].quantity += 1;
+        state.cart[itemIndex].subTotal = calculateItemSubTotal(
+          state.cart[itemIndex].price,
+          state.cart[itemIndex].quantity
+        );
       }
+      state.totalAmount = calculateTotalAmount(state.cart);
     },
 
     // Decrement quantity for a specific item
@@ -42,17 +68,22 @@ export const cartSlice = createSlice({
       );
       if (itemIndex >= 0 && state.cart[itemIndex].quantity > 1) {
         state.cart[itemIndex].quantity -= 1;
+        state.cart[itemIndex].subTotal = calculateItemSubTotal(
+          state.cart[itemIndex].price,
+          state.cart[itemIndex].quantity
+        );
       } else {
-        // Remove the item from the cart if the quantity is 1
         state.cart = state.cart.filter((item) => item.id !== action.payload.id);
       }
       state.count = state.cart.length;
+      state.totalAmount = calculateTotalAmount(state.cart);
     },
 
     // Remove item from cart
     removeFromCart(state, action) {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
       state.count = state.cart.length;
+      state.totalAmount = calculateTotalAmount(state.cart);
     },
   },
 });

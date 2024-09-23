@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CiShoppingCart } from "react-icons/ci";
 import { useRouter } from "next/navigation";
@@ -13,22 +13,9 @@ import { MdDeleteForever } from "react-icons/md";
 
 const CartDetails = () => {
   const cartItems = useSelector((state) => state.cart.cart);
-  const [totalAmount, setTotalAmount] = useState(0);
+  // const totalAmount = useSelector((state) => state.cart.totalAmount);
   const router = useRouter();
   const dispatch = useDispatch();
-
-  const calculateTotalAmount = () => {
-    const total = cartItems?.reduce(
-      (acc, item) =>
-        acc + (Number(item.price) * (Number(item.quantity) || 1) || 0),
-      0
-    );
-    setTotalAmount(total);
-  };
-
-  const handleCheckout = () => {
-    console.log("Checkout clicked");
-  };
 
   const handleIncrement = (id) => {
     dispatch(incrementItem({ id }));
@@ -80,19 +67,19 @@ const CartDetails = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-600 text-sm ">
+                <tbody className="text-gray-600 text-sm">
                   {cartItems?.map((item) => (
                     <tr
                       key={item.id}
                       className="border-b border-x-gray-200 flex flex-col md:table-row"
                     >
-                      <td className="md:py-3 md:px-6 text-left flex items-center ">
+                      <td className="md:py-3 md:px-6 text-left flex items-center">
                         <Image
                           src={item.url.src}
                           alt={item.itemName}
                           width={120}
                           height={150}
-                          className="object-cover "
+                          className="object-cover"
                         />
                         <div className="ml-4 flex flex-col w-full sm:w-auto">
                           <span className="font-semibold break-words w-full">
@@ -115,14 +102,14 @@ const CartDetails = () => {
                         <div className="flex items-center justify-center space-x-2 border border-gray-500 py-1 rounded-3xl">
                           <button
                             onClick={() => handleDecrement(item.id)}
-                            className="text-black px-2 py-1 rounded "
+                            className="text-black px-2 py-1 rounded"
                           >
                             -
                           </button>
                           <span>{item.quantity}</span>
                           <button
                             onClick={() => handleIncrement(item.id)}
-                            className="text-black px-2 py-1 rounded "
+                            className="text-black px-2 py-1 rounded"
                           >
                             +
                           </button>
@@ -130,10 +117,7 @@ const CartDetails = () => {
                       </td>
 
                       <td className="py-3 px-6 text-center border border-gray-300">
-                        $
-                        {(
-                          Number(item.price) * (Number(item.quantity) || 1)
-                        ).toFixed(2)}
+                        ${item.subTotal.toFixed(2)}
                       </td>
                     </tr>
                   ))}
@@ -150,19 +134,13 @@ const CartDetails = () => {
             >
               Continue Shopping
             </button>
-            <button
-              onClick={calculateTotalAmount} // Call the calculateTotalAmount function
-              className="border border-black text-black px-7 font-semibold text-[14px] py-2 rounded-3xl hover:bg-gray-100"
-            >
-              Update Shopping Cart
-            </button>
           </div>
 
           {/* Total Amount */}
-          <div className="mt-8 flex justify-between text-lg font-bold sm:text-right">
+          {/* <div className="mt-8 flex justify-between text-lg font-bold sm:text-right mx-3">
             <span>Total Amount:</span>
-            <span>${totalAmount.toFixed(2) || "0.00"}</span>
-          </div>
+            <span>${totalAmount.toFixed(2)}</span>
+          </div> */}
         </>
       )}
     </div>
