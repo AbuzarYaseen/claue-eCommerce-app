@@ -66,7 +66,7 @@ const Trending = () => {
                   <p className="mt-3 text-[14px] md:font-bold">
                     {item.itemName}
                   </p>
-                  <p className="text-[14px]">{item.price}</p>
+                  <p className="text-[14px]">${item.price}</p>
                   <p className="text-[14px]">{item.rating}</p>
                 </div>
               );
