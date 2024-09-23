@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signUpSchema } from "@/formValidationSchema/schema";
 import Image from "next/image";
-import signup_img from "@/app/public/assests/signup_img.png";
+// import signup_img from "@/app/public/assests/signup_img.png";
 
 const Register = () => {
   const [formValues, setFormValues] = useState({
@@ -82,7 +82,7 @@ const Register = () => {
   };
   return (
     <>
-      <Image src={signup_img} />
+      {/* <Image src={signup_img} /> */}
       <div className="flex flex-col md:flex-row justify-between md:px-12 px-6 md:mx-16 mt-10">
         <Formik
           initialValues={{

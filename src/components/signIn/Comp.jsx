@@ -9,7 +9,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import login_img from "@/app/public/assests/login_img.png";
-import login_img from "@/app/public/assests/login_img.png";
+// import login_img from "@/app/public/assests/login_img.png";
 import Image from "next/image";
 
 const Comp = () => {
@@ -86,7 +86,7 @@ const Comp = () => {
   };
   return (
     <>
-      <Image src={login_img} />
+      {/* <Image src={login_img} /> */}
       <div className="flex flex-col md:flex-row justify-between px-6 md:px-12 md:mx-16 mt-16">
         <div className="md:w-1/2 mr-5 ">
           <h1 className="text-[18px] font-bold mb-5">Registered Customers</h1>
