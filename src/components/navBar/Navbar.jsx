@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "@/app/public/assests/logo_claue_1.png";
 import { navLinks } from "@/json/navLinks/navlinks";
@@ -17,13 +17,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import { auth } from "../../../firebaseConfig"; // Your Firebase config
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [user, setUser] = useState(null); // Track user state
   const router = useRouter();
+  const pathname = usePathname();
 
   const cart = useSelector((state) => {
     return state.cart.count;
@@ -42,6 +46,25 @@ const Navbar = () => {
         : router.push("/cart-details");
     }
   };
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    toast.success("Logged out successfully!", {
+      position: "top-right",
+    });
+    setUser(null); // Clear user state
+    router.push("/login"); // Redirect to login page
+  };
+
+  useEffect(() => {
+    // Listen to the authentication state
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser); // Update user state
+    });
+
+    // Clean up listener
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
@@ -64,14 +87,16 @@ const Navbar = () => {
             className="hover:cursor-pointer"
           />
         </div>
-        {/* testing user git username and email */}
+
         {/* Normal Navbar for larger screens */}
         <div className="hidden lg:flex">
           <ul className="flex flex-row space-x-14">
             {navLinks.map((link) => (
               <li
                 key={link.id}
-                className="cursor-pointer font-bold hover:text-red-300"
+                className={`cursor-pointer font-bold ${
+                  pathname === link.url ? "text-red-400" : "hover:text-red-300"
+                }`}
               >
                 <Link href={link.url}>{link.label}</Link>
               </li>
@@ -102,12 +127,29 @@ const Navbar = () => {
             <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link href="/login">Sign in</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/signup">Create An Account</Link>
-              </DropdownMenuItem>
+              {user ? (
+                <>
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="hover:cursor-pointer"
+                  >
+                    Logout
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                <>
+                  <DropdownMenuItem>
+                    <Link href="/login" className="hover:cursor-pointer">
+                      Sign in
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/signup" className="hover:cursor-pointer">
+                      Create An Account
+                    </Link>
+                  </DropdownMenuItem>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -137,7 +179,6 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

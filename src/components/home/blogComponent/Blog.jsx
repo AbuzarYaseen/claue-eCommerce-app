@@ -1,19 +1,61 @@
+"use client";
 import React from "react";
-import blog1 from "@/app/public/assests/blog/blog1.png";
 import blog2 from "@/app/public/assests/blog/blog2.png";
-import blog3 from "@/app/public/assests/blog/blog3.png";
 import Image from "next/image";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { blogData } from "@/json/blog/blog";
 
 const Blog = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplaySpeed: 2000,
+    autoplay: false,
+    responsive: [
+      {
+        breakpoint: 1024, // Tablet (641px to 1024px)
+        settings: {
+          slidesToShow: 3, // Show 4 images on tablet
+        },
+      },
+      {
+        breakpoint: 640, // Mobile (up to 640px)
+        settings: {
+          slidesToShow: 1, // Show 2 images on mobile
+        },
+      },
+    ],
+  };
   return (
-    <div className="mt-8 px-11">
+    <div className="mt-8 px-4">
       <span className="flex justify-center flex-col items-center">
         <h1 className="font-bold text-[26px]">LATEST FROM BLOG</h1>
         <p className="italic text-[#777977]">
           The freshest and most exciting news
         </p>
       </span>
-      <div className="flex gap-4">
+      <div className="overflow-y-hidden overflow-x-hidden ">
+        <Slider {...settings}>
+          {blogData.map((data) => {
+            return (
+              <div className="px-2">
+                <Image src={data.url} />
+                <h2 className="">{data.title}</h2>
+                <p className="text-[#777977]">{data.writter}</p>
+                <p className="text-[#777977] text-[14px] leading-6">
+                  {data.description}
+                </p>
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
+      {/* <div className="flex gap-4">
         <div className="flex flex-col">
           <Image src={blog2} width={400} height={250} />
           <h2 className="text-[16px] mt-4 font-bold hover:text-[#CF9784] hover:cursor-pointer">
@@ -50,7 +92,7 @@ const Blog = () => {
             sustainability. Designers are increasingly using eco...{" "}
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

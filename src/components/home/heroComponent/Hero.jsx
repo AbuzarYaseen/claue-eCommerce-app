@@ -3,30 +3,30 @@ import React from "react";
 const Hero = () => {
   return (
     <div className="pt-14">
-      <div className="px-3 m-auto flex flex-col md:flex-row">
-        <div className="overflow-hidden w-1/2 ml-12">
-          <div className="heroWomen  lg:h-[45rem]  relative hover:cursor-pointer transform hover:scale-105 transition-transform duration-300 ">
+      <div className="  flex flex-col md:flex-row gap-4">
+        <div className="overflow-hidden md:w-1/2 ">
+          <div className="heroWomen h-96 lg:h-[45rem]   hover:cursor-pointer transform hover:scale-105 transition-transform duration-300 flex  items-end justify-center">
             <button
-              className="absolute bg-white text-black hover:text-white hover:bg-[#CF9784] rounded-2xl text-[14px] 
-          font-semibold p-2 px-10 lg:top-3/4 lg:left-64"
+              className=" bg-white text-black hover:text-white hover:bg-[#CF9784] rounded-2xl text-[14px] 
+          font-semibold p-2 px-10  mb-8"
             >
               Women
             </button>
           </div>
         </div>
-        <div className="overflow-hidden w-1/2 mr-12 ml-5 flex flex-col">
-          <div className="watches  lg:h-1/2 mb-5 relative hover:cursor-pointer transform hover:scale-105 transition-transform duration-300 ">
+        <div className="overflow-hidden md:w-1/2   flex flex-col gap-4">
+          <div className="watches h-96 md:h-48 lg:h-1/2 hover:cursor-pointer transform hover:scale-105 transition-transform duration-300 flex  items-end justify-center">
             <button
-              className="absolute bg-white text-black hover:text-white hover:bg-[#CF9784] rounded-2xl text-[14px] 
-          font-semibold p-2 px-10 lg:top-3/4 lg:left-64"
+              className=" bg-white text-black hover:text-white hover:bg-[#CF9784] rounded-2xl text-[14px] 
+          font-semibold p-2 px-10 mb-8"
             >
               Watches
             </button>
           </div>
-          <div className="heroAccessries  lg:h-1/2 mt-5 relative hover:cursor-pointer transform hover:scale-105 transition-transform duration-300 ">
+          <div className="heroAccessries h-48 lg:h-1/2  hover:cursor-pointer transform hover:scale-105 transition-transform duration-300 flex  items-end justify-center">
             <button
-              className="absolute bg-white text-black hover:text-white hover:bg-[#CF9784] rounded-2xl text-[14px] 
-          font-semibold p-2 px-10 lg:top-3/4 lg:left-64"
+              className=" bg-white text-black hover:text-white hover:bg-[#CF9784] rounded-2xl text-[14px] 
+          font-semibold p-2 px-10 mb-8"
             >
               Accessories
             </button>

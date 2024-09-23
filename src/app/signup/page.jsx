@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../../../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signUpSchema } from "@/formValidationSchema/schema";
@@ -163,22 +163,24 @@ const SignUp = () => {
                     <label className="text-[13px] font-medium mb-2">
                       Password
                     </label>
-                    <Field
-                      type={showPassword ? "password" : "text"}
-                      name="password"
-                      placeholder="Password"
-                      className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4 relative"
-                    />
+                    <div className="border-gray-500 border-2 rounded-3xl mb-4 flex justify-between">
+                      <Field
+                        type={showPassword ? "password" : "text"}
+                        name="password"
+                        placeholder="Password"
+                        className="rounded-3xl p-2  text-[13px] pl-4 focus:outline-none"
+                      />
 
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setShowPassword((prev) => !prev);
-                      }}
-                      className="absolute top-[570px] sm:top-[415px] lg:top-[460px] xl:top-[525px] left-3/4 sm:left-[78%] lg:left-[84%] xl:left-[88%] text-[13px]"
-                    >
-                      {showPassword ? "Show" : "Hide"}
-                    </button>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowPassword((prev) => !prev);
+                        }}
+                        className="mr-5 text-[13px]"
+                      >
+                        {showPassword ? "Show" : "Hide"}
+                      </button>
+                    </div>
                     <ErrorMessage
                       name="password"
                       component="div"
@@ -190,22 +192,24 @@ const SignUp = () => {
                     <label className="text-[13px] font-medium mb-2">
                       Confirm Password
                     </label>
-                    <Field
-                      type={showConfirmPass ? "password" : "text"}
-                      name="confirmPassword"
-                      placeholder="Confirm Password"
-                      className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4 relative"
-                    />
+                    <div className="border-gray-500 border-2 rounded-3xl mb-4 flex justify-between">
+                      <Field
+                        type={showConfirmPass ? "password" : "text"}
+                        name="confirmPassword"
+                        placeholder="Confirm Password"
+                        className=" rounded-3xl  p-2 focus:outline-none text-[13px] pl-4 "
+                      />
 
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setShowConfirmPass((prev) => !prev);
-                      }}
-                      className="absolute top-[650px] sm:top-[500px] lg:top-[550px] xl:top-[603px] left-3/4 sm:left-[78%] lg:left-[84%] xl:left-[88%] text-[13px]"
-                    >
-                      {showConfirmPass ? "Show" : "Hide"}
-                    </button>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowConfirmPass((prev) => !prev);
+                        }}
+                        className=" text-[13px] mr-5"
+                      >
+                        {showConfirmPass ? "Show" : "Hide"}
+                      </button>
+                    </div>
                     <ErrorMessage
                       name="confirmPassword"
                       component="div"
@@ -219,12 +223,12 @@ const SignUp = () => {
                       By using this form you agree with the storage and handling
                       of your data by this website.
                     </label>
-                    <ErrorMessage
-                      name="agreeToTerms"
-                      component="div"
-                      className="text-red-500 text-xs mb-5"
-                    />
                   </div>
+                  <ErrorMessage
+                    name="agreeToTerms"
+                    component="div"
+                    className="text-red-500 text-xs mb-5"
+                  />
 
                   <div className="flex flex-col md:flex-row justify-between mt-7">
                     <button
@@ -244,7 +248,6 @@ const SignUp = () => {
                   </div>
                 </Form>
               </div>
-              <ToastContainer />
             </>
           )}
         </Formik>

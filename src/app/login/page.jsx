@@ -6,7 +6,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import login_img from "@/app/public/assests/login_img.png";
 import Image from "next/image";
@@ -152,7 +152,6 @@ const Login = () => {
           >
             Create An Account
           </button>
-          <ToastContainer />
         </div>
       </div>
     </>

@@ -12,16 +12,16 @@ import { categories, information, links } from "@/json/footerLinks/footerlinks";
 const Footer = () => {
   return (
     <>
-      <div className="bg-[#F6F6F8] p-14 grid justify-center items-center">
+      <div className="bg-[#F6F6F8] px-4 xl:px-14 grid  items-center mt-4 py-16">
         <div className="grid  md:grid-cols-2 md:grid-rows-2 xl:grid-cols-5 xl:grid-rows-1 ">
-          <ul className="flex flex-col mr-5 pr-6">
-            <li className="mb-6">
+          <ul className="flex flex-col md:mr-5 pr-6 mt-8">
+            <li className="mb-8">
               <Image src={logo} className="h-6 w-20" />
             </li>
             <li className="mb-3">
               <span className="flex items-center">
-                <CiLocationOn size={40} />
-                <span className="pl-3 text-[14px]">
+                <CiLocationOn className="text-base xl:text-4xl" />
+                <span className="pl-3 xl:pl-2 text-[14px]">
                   184 Main Rd E, St Albans VIC 3021, Australia
                 </span>
               </span>
@@ -55,8 +55,8 @@ const Footer = () => {
               </span>
             </li>
           </ul>
-          <div>
-            <h3 className="font-bold mb-4">Categories</h3>
+          <div className="mt-8">
+            <h3 className="font-bold mb-7">Categories</h3>
             <ul className="flex flex-col">
               {categories.map((cat, index) => {
                 return (
@@ -71,8 +71,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-bold mb-4">Information</h3>
+          <div className="mt-8">
+            <h3 className="font-bold mb-7">Information</h3>
             <ul className="flex flex-col">
               {information.map((info, index) => {
                 return (
@@ -87,8 +87,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-bold mb-4">Quick Links</h3>
+          <div className="mt-8">
+            <h3 className="font-bold mb-7">Quick Links</h3>
             <ul className="flex flex-col">
               {links.map((info, index) => {
                 return (
@@ -103,19 +103,19 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-bold mb-4">Newsletter</h3>
-            <div className="flex flex-col">
+          <div className="mt-8">
+            <h3 className="font-bold mb-7">Newsletter</h3>
+            <div className="flex flex-col gap-3">
               <p className="text-[14px]">
                 Subscribe to our newsletter and get 10% off your first purchase
               </p>
-              <div className=" flex">
+              <div className=" flex border-[1px] rounded-3xl border-black bg-white">
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="border-[1px] p-3 px-4 rounded-3xl border-black w-full "
+                  className=" p-3 px-4  rounded-3xl w-full focus:outline-none"
                 />
-                <button className="border-[1px] border-black bg-black text-white rounded-3xl font-bold p-2 px-4 top-[1704px] md:top-[1200px] lg:top-[1140px] lg:left-56 xl:top-[837px] xl:left-[1225px]">
+                <button className="border-[1px] border-black bg-black text-white rounded-3xl font-bold m-1 p-2 px-4 top-[1704px] md:top-[1200px] lg:top-[1140px] lg:left-56 xl:top-[837px] xl:left-[1225px]">
                   Subscribe
                 </button>
               </div>
@@ -123,7 +123,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="px-14 py-5 flex md:justify-between">
+      <div className="md:px-14 py-5 flex justify-center md:justify-between ">
         <p className="text-[#777977]"> © 2024 Copyright By Abuzar.</p>
         <div className="hidden md:block text-[#777977]">
           <ul className="flex flex-row gap-3">
