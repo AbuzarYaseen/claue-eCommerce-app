@@ -8,7 +8,8 @@ import {
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import login_img from "@/app/public/assests/login_img.png";
+// import login_img from "@/app/public/assests/login_img.png";
+import login_img from "../public/assests/login_img.png";
 import Image from "next/image";
 
 const Login = () => {

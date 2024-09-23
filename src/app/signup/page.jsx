@@ -12,7 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signUpSchema } from "@/formValidationSchema/schema";
 import Image from "next/image";
-import signup_img from "@/app/public/assests/signup_img.png";
+//import signup_img from "@/app/public/assests/signup_img.png";
+import signup_img from "../public/assests/signup_img.png";
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState({
