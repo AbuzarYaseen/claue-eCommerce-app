@@ -4,8 +4,6 @@ const initialState = {
   count: 0,
   cart: [],
   totalAmount: 0,
-  shippingAmount: 0,
-  orderTotal: 0,
 };
 
 const calculateTotalAmount = (cart) => {
@@ -48,13 +46,6 @@ export const cartSlice = createSlice({
       //Calculating total amount of order without shipping
       state.totalAmount = calculateTotalAmount(state.cart);
       // Calculating order total which includes shipping amount also
-      state.orderTotal = state.totalAmount + state.shippingAmount;
-    },
-
-    //Setting shipping amount
-    setShippingAmount(state, action) {
-      state.shippingAmount = action.payload; // Set the shipping amount
-      state.orderTotal = state.totalAmount + state.shippingAmount; // Recalculate order total
     },
 
     // Increment quantity for a specific item

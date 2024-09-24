@@ -16,8 +16,11 @@ const initialState = {
     phoneNumber: "",
   },
   paymentMethod: "",
-  deliveryDate: null,
+  deliveryDate: "",
   deliveryComment: "",
+  orderComment: "",
+  orderTotal: 0,
+  shippingAmount: 0,
 };
 
 const shippingDetailsSlice = createSlice({
@@ -39,6 +42,14 @@ const shippingDetailsSlice = createSlice({
     setDeliveryComment(state, action) {
       state.deliveryComment = action.payload;
     },
+
+    setShippingAmount(state, action) {
+      state.shippingAmount = action.payload; // Set the shipping amount
+    },
+
+    setOrderComment(state, action) {
+      state.orderComment = action.payload;
+    },
   },
 });
 
@@ -47,6 +58,8 @@ export const {
   setPaymentMethod,
   setDeliveryComment,
   setDeliveryDate,
+  setOrderComment,
+  setShippingAmount,
 } = shippingDetailsSlice.actions;
 
 export default shippingDetailsSlice.reducer;

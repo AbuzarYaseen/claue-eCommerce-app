@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import PaymentMethods from "./PaymentMethods";
 import { Calendar } from "@/components/ui/calendar";
 import { useDispatch } from "react-redux";
-import { setShippingAmount } from "@/redux-toolkit-config/slice/slice";
+// import { setShippingAmount } from "@/redux-toolkit-config/slice/slice";
+import { setShippingAmount } from "@/redux-toolkit-config/slice/shippingDetailsSlice";
 // import {
 //   setDeliveryComment,
 //   setDeliveryDate,

@@ -13,7 +13,7 @@ const cartPersistConfig = {
 // Combine reducers (in case you want to add more slices in the future)
 const rootReducer = combineReducers({
   cart: persistReducer(cartPersistConfig, cartSlice), // Persisted cart reducer
-  ShippingDetails: shippingDetailsSlice,
+  shippingDetails: shippingDetailsSlice,
 });
 
 // Create the store with persisted reducer
