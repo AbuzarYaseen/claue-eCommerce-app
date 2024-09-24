@@ -41,7 +41,7 @@ const CartDetails = () => {
           <p className="text-lg">Your cart is empty.</p>
           <button
             onClick={() => router.push("/")}
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="mt-4 bg-[#D19C88] text-white px-4 py-2 rounded hover:bg-black"
           >
             Continue Shopping
           </button>

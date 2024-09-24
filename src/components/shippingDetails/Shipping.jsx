@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { countries } from "@/json/countriesList/countries";
+import { useRouter } from "next/navigation";
 
 const Shipping = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -19,6 +20,11 @@ const Shipping = () => {
 
   // Calculate order total based on shipping method
   const orderTotal = shippingMethod === "free" ? subTotal : subTotal + flatRate;
+
+  const router = useRouter();
+  const checkoutButton = () => {
+    router.push("/checkout");
+  };
 
   // Update provinces based on the selected country
   useEffect(() => {
@@ -175,7 +181,10 @@ const Shipping = () => {
             <p className="text-[20px]">${orderTotal.toFixed(2)}</p>
           </div>
           <div className="w-full">
-            <button className="mt-4 bg-black text-white px-4 py-3 rounded-3xl hover:bg-[#D19C88]  w-[100%]">
+            <button
+              className="mt-4 bg-black text-white px-4 py-3 rounded-3xl hover:bg-[#D19C88]  w-[100%]"
+              onClick={checkoutButton}
+            >
               Proceed to Checkout
             </button>
           </div>

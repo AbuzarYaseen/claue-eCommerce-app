@@ -4,6 +4,8 @@ const initialState = {
   count: 0,
   cart: [],
   totalAmount: 0,
+  shippingAmount: 0,
+  orderTotal: 0,
 };
 
 const calculateTotalAmount = (cart) => {
@@ -43,7 +45,16 @@ export const cartSlice = createSlice({
         state.cart.push(newItem);
       }
       state.count = state.cart.length;
+      //Calculating total amount of order without shipping
       state.totalAmount = calculateTotalAmount(state.cart);
+      // Calculating order total which includes shipping amount also
+      state.orderTotal = state.totalAmount + state.shippingAmount;
+    },
+
+    //Setting shipping amount
+    setShippingAmount(state, action) {
+      state.shippingAmount = action.payload; // Set the shipping amount
+      state.orderTotal = state.totalAmount + state.shippingAmount; // Recalculate order total
     },
 
     // Increment quantity for a specific item
@@ -72,9 +83,10 @@ export const cartSlice = createSlice({
           state.cart[itemIndex].price,
           state.cart[itemIndex].quantity
         );
-      } else {
-        state.cart = state.cart.filter((item) => item.id !== action.payload.id);
       }
+      // else {
+      //   state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+      // }
       state.count = state.cart.length;
       state.totalAmount = calculateTotalAmount(state.cart);
     },
@@ -89,5 +101,10 @@ export const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { addToCart, incrementItem, decrementItem, removeFromCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  incrementItem,
+  decrementItem,
+  removeFromCart,
+  setShippingAmount,
+} = cartSlice.actions;

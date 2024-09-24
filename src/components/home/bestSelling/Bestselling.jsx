@@ -4,10 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  incrementByAmount,
-  incrementItem,
-} from "@/redux-toolkit-config/slice/slice";
+import { addToCart } from "@/redux-toolkit-config/slice/slice";
 import { useDispatch } from "react-redux";
 
 const Bestselling = () => {
@@ -28,7 +25,7 @@ const Bestselling = () => {
 
   const handleAddToCartButtonClick = (item) => {
     console.log("Item added to cart.", item);
-    dispatch(incrementByAmount(item));
+    dispatch(addToCart(item));
 
     toast.success("Item successfully added to cart.", {
       position: "top-right",
