@@ -2,38 +2,42 @@ export const categories = [
   {
     id: 1,
     catName: "Men",
+    url: "/category-details/man",
   },
   {
     id: 2,
-    catName: "Women",
+    catName: "Children",
+    url: "/category-details/child",
   },
   {
     id: 3,
     catName: "Accessories",
+    url: "/category-details/watches",
   },
   {
     id: 4,
     catName: "Shoes",
+    url: "/category-details/footware",
   },
 ];
 
 export const information = [
   {
     id: 1,
-    info: "About Us",
-  },
-  {
-    id: 2,
-    info: "Contact Us",
-  },
-  {
-    id: 3,
     info: "Terms & Conditions",
   },
   {
-    id: 4,
+    id: 2,
     info: "Privacy Policy",
   },
+  // {
+  //   id: 3,
+  //   info: "Terms & Conditions",
+  // },
+  // {
+  //   id: 4,
+  //   info: "Privacy Policy",
+  // },
 ];
 
 export const links = [

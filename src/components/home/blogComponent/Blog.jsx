@@ -32,30 +32,33 @@ const Blog = () => {
     ],
   };
   return (
-    <div className="mt-8 px-4">
-      <span className="flex justify-center flex-col items-center">
-        <h1 className="font-bold text-[26px]">LATEST FROM BLOG</h1>
-        <p className="italic text-[#777977]">
-          The freshest and most exciting news
-        </p>
-      </span>
-      <div className="overflow-y-hidden overflow-x-hidden ">
-        <Slider {...settings}>
-          {blogData.map((data) => {
-            return (
-              <div className="px-2">
-                <Image src={data.url} />
-                <h2 className="">{data.title}</h2>
-                <p className="text-[#777977]">{data.writter}</p>
-                <p className="text-[#777977] text-[14px] leading-6">
-                  {data.description}
-                </p>
-              </div>
-            );
-          })}
-        </Slider>
-      </div>
-      {/* <div className="flex gap-4">
+    <div className=" mx-auto xl:mx-10 my-8 ">
+      <div className="mt-8 px-5 md:px-10 mx-auto max-w-screen-2xl">
+        <span className="flex justify-center flex-col items-center">
+          <h1 className="font-bold text-[14px] mt-5 md:text-xl xl:text-2xl">
+            LATEST FROM BLOG
+          </h1>
+          <p className="italic text-[#777977] xl:text-xl">
+            The freshest and most exciting news
+          </p>
+        </span>
+        <div className="overflow-y-hidden overflow-x-hidden ">
+          <Slider {...settings}>
+            {blogData.map((data) => {
+              return (
+                <div className="px-2">
+                  <Image src={data.url} />
+                  <h2 className="xl:text-xl">{data.title}</h2>
+                  <p className="text-[#777977] xl:text-xl">{data.writter}</p>
+                  <p className="text-[#777977] text-[14px] xl:text-xl leading-6">
+                    {data.description}
+                  </p>
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
+        {/* <div className="flex gap-4">
         <div className="flex flex-col">
           <Image src={blog2} width={400} height={250} />
           <h2 className="text-[16px] mt-4 font-bold hover:text-[#CF9784] hover:cursor-pointer">
@@ -93,6 +96,7 @@ const Blog = () => {
           </p>
         </div>
       </div> */}
+      </div>
     </div>
   );
 };

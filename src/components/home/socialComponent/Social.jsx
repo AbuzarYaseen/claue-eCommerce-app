@@ -31,16 +31,20 @@ const Social = () => {
     ],
   };
   return (
-    <div className="mt-8">
-      <span className="flex justify-center flex-col items-center mb-3">
-        <h1 className="font-bold md:text-[26px]">@FOLLOW US ON INSTAGRAM</h1>
-      </span>
-      <div className="overflow-y-hidden overflow-x-hidden ">
-        <Slider {...settings}>
-          {images.map((img) => {
-            return <Image src={img.url} />;
-          })}
-        </Slider>
+    <div className=" mx-auto xl:mx-10 my-8 ">
+      <div className="mt-8 px-5 md:px-10 mx-auto max-w-screen-2xl">
+        <span className="flex justify-center flex-col items-center mb-3">
+          <h1 className="font-bold md:text-xl xl:text-2xl">
+            @FOLLOW US ON INSTAGRAM
+          </h1>
+        </span>
+        <div className="overflow-y-hidden overflow-x-hidden ">
+          <Slider {...settings}>
+            {images.map((img) => {
+              return <Image src={img.url} />;
+            })}
+          </Slider>
+        </div>
       </div>
     </div>
   );
