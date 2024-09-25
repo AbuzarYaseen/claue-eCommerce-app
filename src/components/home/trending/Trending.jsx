@@ -39,7 +39,7 @@ const Trending = () => {
             <p className="italic text-[#777977]">Top view in this week</p>
           </span>
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 mt-5 gap-4 ">
-            {trendingItems.map((item) => {
+            {trendingItems.slice(8, 16).map((item) => {
               return (
                 <div
                   key={item.id}
@@ -67,7 +67,7 @@ const Trending = () => {
                     {item.itemName}
                   </p>
                   <p className="text-[14px]">${item.price}</p>
-                  <p className="text-[14px]">{item.rating}</p>
+                  <p className="text-[14px]">{item.rating}⭐</p>
                 </div>
               );
             })}

@@ -68,7 +68,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="flex justify-between px-4 py-4 items-center md:px-20">
+      <div className="flex justify-between px-4 py-4 items-center md:px-20 border-b">
         {/* Hamburger Icon for Mobile and Tablet */}
         <HiMenuAlt3
           size={30}
@@ -94,11 +94,33 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <li
                 key={link.id}
-                className={`cursor-pointer font-bold ${
+                className={`cursor-pointer font-bold relative ${
                   pathname === link.url ? "text-red-400" : "hover:text-red-300"
                 }`}
               >
-                <Link href={link.url}>{link.label}</Link>
+                {link.label === "Categories" ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <span className="hover:cursor-pointer">{link.label}</span>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem asChild>
+                        <Link href="/category-details/man">Man</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/category-details/footwear">Footwear</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/category-details/watches">Watches</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/category-details/child">Child</Link>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Link href={link.url}>{link.label}</Link>
+                )}
               </li>
             ))}
           </ul>

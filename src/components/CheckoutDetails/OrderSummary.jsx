@@ -12,13 +12,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth, db } from "../../../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
 const OrderSummary = () => {
   const [viewCartItems, setViewCartItems] = useState(false);
   const [comment, setComment] = useState(""); // State to store comment
   const [isChecked, setIsChecked] = useState(false); // Track terms checkbox
   const [error, setError] = useState(false); // Track error state
-
+  const router = useRouter();
   const itemsInCart = useSelector((state) => {
     return state.cart.count;
   });
@@ -73,6 +74,11 @@ const OrderSummary = () => {
         toast.error("Login first to place order.", {
           position: "top-right",
         }); // Show error toast if user is not logged in
+
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
+
         return; // Exit early if not logged in
       }
 

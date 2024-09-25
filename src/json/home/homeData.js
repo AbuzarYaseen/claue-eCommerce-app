@@ -6,6 +6,14 @@ import img5 from "@/app/public/assests/trending/img5.png";
 import img6 from "@/app/public/assests/trending/img6.png";
 import img7 from "@/app/public/assests/trending/img7.png";
 import img8 from "@/app/public/assests/trending/img8.png";
+import w1 from "@/app/public/assests/watches/i1.png";
+import w2 from "@/app/public/assests/watches/i2.png";
+import w3 from "@/app/public/assests/watches/i3.png";
+import w4 from "@/app/public/assests/watches/i4.png";
+import f1 from "@/app/public/assests/footwear/i1.png";
+import f2 from "@/app/public/assests/footwear/i2.png";
+import f3 from "@/app/public/assests/footwear/i3.png";
+import f4 from "@/app/public/assests/footwear/i4.png";
 
 export const trendingItems = [
   {
@@ -14,6 +22,15 @@ export const trendingItems = [
     price: "115",
     rating: "3.5",
     url: img1,
+    images: [img4, img1, img2, img3],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "man",
   },
   {
     id: 2,
@@ -21,6 +38,15 @@ export const trendingItems = [
     price: "6",
     rating: "4.5",
     url: img2,
+    images: [img2, img5, img3, img7],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "child",
   },
   {
     id: 3,
@@ -28,6 +54,15 @@ export const trendingItems = [
     price: "120",
     rating: "3",
     url: img3,
+    images: [img8, img1, img2, img3],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "child",
   },
   {
     id: 4,
@@ -35,6 +70,15 @@ export const trendingItems = [
     price: "39",
     rating: "2.5",
     url: img4,
+    images: [img4, img5, img6, img3],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "man",
   },
   {
     id: 5,
@@ -42,6 +86,15 @@ export const trendingItems = [
     price: "39",
     rating: "3",
     url: img5,
+    images: [img5, img6, img7, img8],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "child",
   },
   {
     id: 6,
@@ -49,6 +102,15 @@ export const trendingItems = [
     price: "73",
     rating: "2.7",
     url: img6,
+    images: [img6, img1, img2, img3],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "man",
   },
   {
     id: 7,
@@ -56,6 +118,15 @@ export const trendingItems = [
     price: "115",
     rating: "3.3",
     url: img7,
+    images: [img7, img4, img5, img6],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "man",
   },
   {
     id: 8,
@@ -63,5 +134,142 @@ export const trendingItems = [
     price: "99",
     rating: "3.4",
     url: img8,
+    images: [img8, img1, img2, img7],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "child",
+  },
+  {
+    id: 9,
+    itemName: "Casio 34mm Men's MTP-M305L-7AVDF ",
+    price: "45",
+    rating: "3.4",
+    url: w1,
+    images: [w1, w2, w3, w4],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "watches",
+  },
+  {
+    id: 10,
+    itemName: "Casio 34mm Men's MTP-M305L-7AVDF ",
+    price: "40",
+    rating: "3.4",
+    url: w2,
+    images: [w1, w2, w3, w4],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "watches",
+  },
+  {
+    id: 11,
+    itemName: "G-SHOCK 49.6 mm Men GA-400GB-1A4DR ",
+    price: "38",
+    rating: "3.4",
+    url: w3,
+    images: [w1, w2, w3, w4],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "watches",
+  },
+  {
+    id: 12,
+    itemName: "Smile Kid watch",
+    price: "99",
+    rating: "3.4",
+    url: w4,
+    images: [w1, w2, w3, w4],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "watches",
+  },
+  {
+    id: 13,
+    itemName: "Men's Stonington Boots Moc-Toe ",
+    price: "199",
+    rating: "3.4",
+    url: f1,
+    images: [f1, f2, f3, f4],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "footwear",
+  },
+  {
+    id: 14,
+    itemName: "Trailfinder Hiking Shoes Slip-On ",
+    price: "150",
+    rating: "3.4",
+    url: f2,
+    images: [f1, f2, f3, f4],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "footwear",
+  },
+  {
+    id: 15,
+    itemName: "Mountainville Shoes, Leather Lace-Up ",
+    price: "120",
+    rating: "3.4",
+    url: f3,
+    images: [f1, f2, f3, f4],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "footwear",
+  },
+  {
+    id: 16,
+    itemName: "Men's Elevation Hiking Boots ",
+    price: "148",
+    rating: "3.4",
+    url: f4,
+    images: [f1, f2, f3, f4],
+    brief_desc: [
+      "Zip-back fastening",
+      "Regular fit - true to size",
+      "Machine wash",
+      "100% Cotton",
+    ],
+    desc: "Go sporty this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish sporty vibe.",
+    cat: "footwear",
   },
 ];
