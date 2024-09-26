@@ -8,6 +8,7 @@ import { addToCart } from "@/redux-toolkit-config/slice/slice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Slider } from "@/components/ui/slider";
+import Link from "next/link";
 
 const CategoryDetails = () => {
   const dispatch = useDispatch();
@@ -107,36 +108,38 @@ const CategoryDetails = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 mt-5 gap-4">
               {categoryProducts.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex flex-col relative hover:cursor-pointer"
-                  onMouseEnter={() => handleHover(item.id)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {hoveredProductId === item.id && (
-                    <button
-                      className="absolute top-28 font-semibold text-[14px] xl:text-xl left-7 md:top-1/2 md:left-12 lg:top-2/4 lg:left-1/4 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
-                      onClick={() => handleAddToCartButtonClick(item)}
-                    >
-                      Add to cart
-                    </button>
-                  )}
-                  <Image
-                    width={250}
-                    height={300}
-                    src={item.url}
-                    alt={item.itemName}
-                  />
-                  <p className="mt-3 text-[14px] md:text-xl xl:text-xl md:font-bold">
-                    {item.itemName}
-                  </p>
-                  <p className="text-[14px] md:text-xl xl:text-xl">
-                    ${item.price}
-                  </p>
-                  <p className="text-[14px] md:text-xl xl:text-xl">
-                    {item.rating} ⭐
-                  </p>
-                </div>
+                <Link href={`/product-details/${item.id}`} key={item.id}>
+                  <div
+                    key={item.id}
+                    className="flex flex-col relative hover:cursor-pointer"
+                    onMouseEnter={() => handleHover(item.id)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {hoveredProductId === item.id && (
+                      <button
+                        className="absolute top-28 font-semibold text-[14px] xl:text-xl left-7 md:top-1/2 md:left-12 lg:top-2/4 lg:left-1/4 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
+                        onClick={() => handleAddToCartButtonClick(item)}
+                      >
+                        Add to cart
+                      </button>
+                    )}
+                    <Image
+                      width={250}
+                      height={300}
+                      src={item.url}
+                      alt={item.itemName}
+                    />
+                    <p className="mt-3 text-[14px] md:text-xl xl:text-xl md:font-bold">
+                      {item.itemName}
+                    </p>
+                    <p className="text-[14px] md:text-xl xl:text-xl">
+                      ${item.price}
+                    </p>
+                    <p className="text-[14px] md:text-xl xl:text-xl">
+                      {item.rating} ⭐
+                    </p>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>

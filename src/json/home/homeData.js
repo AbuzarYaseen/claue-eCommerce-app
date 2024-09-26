@@ -6,6 +6,10 @@ import img5 from "@/app/public/assests/trending/img5.png";
 import img6 from "@/app/public/assests/trending/img6.png";
 import img7 from "@/app/public/assests/trending/img7.png";
 import img8 from "@/app/public/assests/trending/img8.png";
+import m1 from "@/app/public/assests/trending/m1.png";
+import m2 from "@/app/public/assests/trending/m2.png";
+import m3 from "@/app/public/assests/trending/m3.png";
+import m4 from "@/app/public/assests/trending/m4.png";
 import w1 from "@/app/public/assests/watches/i1.png";
 import w2 from "@/app/public/assests/watches/i2.png";
 import w3 from "@/app/public/assests/watches/i3.png";
@@ -21,8 +25,8 @@ export const trendingItems = [
     itemName: "100% Cotton Sleeveless Maxi Shirt Dress ",
     price: "115",
     rating: "3.5",
-    url: img1,
-    images: [img4, img1, img2, img3],
+    url: m1,
+    images: [m1, m2, m3, m4],
     brief_desc: [
       "Zip-back fastening",
       "Regular fit - true to size",
@@ -69,8 +73,8 @@ export const trendingItems = [
     itemName: "100% Linen Button Detail Midi Skirt",
     price: "39",
     rating: "2.5",
-    url: img4,
-    images: [img4, img5, img6, img3],
+    url: m2,
+    images: [m2, m3, m4, m1],
     brief_desc: [
       "Zip-back fastening",
       "Regular fit - true to size",
@@ -101,8 +105,8 @@ export const trendingItems = [
     itemName: "Slim-Fift V-neck T-shirt",
     price: "73",
     rating: "2.7",
-    url: img6,
-    images: [img6, img1, img2, img3],
+    url: m3,
+    images: [m3, m1, m2, m4],
     brief_desc: [
       "Zip-back fastening",
       "Regular fit - true to size",
@@ -117,8 +121,8 @@ export const trendingItems = [
     itemName: "100% Wool Vintage Style Cloche Hat4",
     price: "115",
     rating: "3.3",
-    url: img7,
-    images: [img7, img4, img5, img6],
+    url: m4,
+    images: [m4, m1, m2, m3],
     brief_desc: [
       "Zip-back fastening",
       "Regular fit - true to size",
