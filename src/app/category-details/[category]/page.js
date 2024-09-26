@@ -16,6 +16,7 @@ const CategoryDetails = () => {
   const params = useParams();
   const category = params.category;
 
+  // Calculate categoryProducts
   const categoryProducts = trendingItems.filter(
     (item) => item.cat === category
   );
@@ -59,7 +60,7 @@ const CategoryDetails = () => {
       (item) => item.price >= priceRange[0] && item.price <= priceRange[1]
     );
     setFilteredProducts(newFilteredProducts);
-  }, [priceRange, categoryProducts]);
+  }, [priceRange]);
 
   if (categoryProducts.length === 0) {
     return <p>No products found in the "{category}" category.</p>;
