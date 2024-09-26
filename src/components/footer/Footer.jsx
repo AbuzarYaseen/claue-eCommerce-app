@@ -87,7 +87,7 @@ const Footer = () => {
                         key={info.id}
                         className="mb-3 hover:cursor-pointer hover:text-red-300 text-[14px] xl:text-[17px]"
                       >
-                        {info.info}
+                        <Link href={info.url}> {info.info} </Link>
                       </li>
                     );
                   })}

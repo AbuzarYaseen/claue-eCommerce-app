@@ -83,174 +83,180 @@ const Register = () => {
   return (
     <>
       {/* <Image src={signup_img} /> */}
-      <div className="flex flex-col md:flex-row justify-between md:px-12 px-6 md:mx-16 mt-10">
-        <Formik
-          initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            agreeToTerms: false,
-          }}
-          validationSchema={signUpSchema}
-          onSubmit={handleFormSubmit}
-        >
-          {({ isSubmitting }) => (
-            <>
-              {/* Personal Information */}
-              <div className="md:w-1/2 mr-5">
-                <h1 className="text-[18px] font-bold">PERSONAL INFORMATION</h1>
-                <Form className="mt-6">
-                  <div className="flex flex-col">
-                    <label className="text-[13px] font-medium mb-2">
-                      First Name
-                    </label>
-                    <Field
-                      type="text"
-                      name="firstName"
-                      placeholder="First Name"
-                      className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4"
-                    />
-                    <ErrorMessage
-                      name="firstName"
-                      component="div"
-                      className="text-red-500 text-xs  mb-5"
-                    />
-                  </div>
-
-                  <div className="flex flex-col">
-                    <label className="text-[13px] font-medium mb-2">
-                      Last Name
-                    </label>
-                    <Field
-                      type="text"
-                      name="lastName"
-                      placeholder="Last Name"
-                      className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4"
-                    />
-                    <ErrorMessage
-                      name="lastName"
-                      component="div"
-                      className="text-red-500 text-xs  mb-5"
-                    />
-                  </div>
-                </Form>
-              </div>
-
-              {/* Sign-In Information */}
-              <div className="md:w-1/2">
-                <h1 className="text-[18px] font-bold">SIGN-IN INFORMATION</h1>
-                <Form className="mt-6">
-                  <div className="flex flex-col">
-                    <label className="text-[13px] font-medium mb-2">
-                      Email
-                    </label>
-                    <Field
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4"
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="text-red-500 text-xs mb-5"
-                    />
-                  </div>
-
-                  <div className="flex flex-col">
-                    <label className="text-[13px] font-medium mb-2">
-                      Password
-                    </label>
-                    <div className="border-gray-500 border-2 rounded-3xl mb-4 flex justify-between">
+      <div className=" mx-auto xl:mx-10 my-8 ">
+        <div className="flex flex-col md:flex-row justify-between mt-8 px-5 md:px-10 mx-auto max-w-screen-2xl">
+          <Formik
+            initialValues={{
+              firstName: "",
+              lastName: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+              agreeToTerms: false,
+            }}
+            validationSchema={signUpSchema}
+            onSubmit={handleFormSubmit}
+          >
+            {({ isSubmitting }) => (
+              <>
+                {/* Personal Information */}
+                <div className="md:w-1/2 mr-5">
+                  <h1 className="text-[18px] xl:text-xl font-bold">
+                    PERSONAL INFORMATION
+                  </h1>
+                  <Form className="mt-6">
+                    <div className="flex flex-col">
+                      <label className="text-[13px] xl:text-[17px] font-medium mb-2">
+                        First Name
+                      </label>
                       <Field
-                        type={showPassword ? "password" : "text"}
+                        type="text"
+                        name="firstName"
+                        placeholder="First Name"
+                        className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] xl:text-[17px] pl-4"
+                      />
+                      <ErrorMessage
+                        name="firstName"
+                        component="div"
+                        className="text-red-500 text-xs xl:text-[17px]  mb-5"
+                      />
+                    </div>
+
+                    <div className="flex flex-col">
+                      <label className="text-[13px] xl:text-[17px] font-medium mb-2">
+                        Last Name
+                      </label>
+                      <Field
+                        type="text"
+                        name="lastName"
+                        placeholder="Last Name"
+                        className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] xl:text-[17px] pl-4"
+                      />
+                      <ErrorMessage
+                        name="lastName"
+                        component="div"
+                        className="text-red-500 text-xs xl:text-[17px] mb-5"
+                      />
+                    </div>
+                  </Form>
+                </div>
+
+                {/* Sign-In Information */}
+                <div className="md:w-1/2">
+                  <h1 className="text-[18px] xl:text-xl font-bold">
+                    SIGN-IN INFORMATION
+                  </h1>
+                  <Form className="mt-6">
+                    <div className="flex flex-col">
+                      <label className="text-[13px] xl:text-[17px] font-medium mb-2">
+                        Email
+                      </label>
+                      <Field
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] xl:text-[17px] pl-4"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="text-red-500 text-xs xl:text-[17px] mb-5"
+                      />
+                    </div>
+
+                    <div className="flex flex-col">
+                      <label className="text-[13px] xl:text-[17px] font-medium mb-2">
+                        Password
+                      </label>
+                      <div className="border-gray-500 border-2 rounded-3xl mb-4 flex justify-between">
+                        <Field
+                          type={showPassword ? "password" : "text"}
+                          name="password"
+                          placeholder="Password"
+                          className="rounded-3xl p-2  text-[13px] xl:text-[17px] pl-4 focus:outline-none"
+                        />
+
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setShowPassword((prev) => !prev);
+                          }}
+                          className="mr-5 text-[13px] xl:text-[17px]"
+                        >
+                          {showPassword ? "Show" : "Hide"}
+                        </button>
+                      </div>
+                      <ErrorMessage
                         name="password"
-                        placeholder="Password"
-                        className="rounded-3xl p-2  text-[13px] pl-4 focus:outline-none"
+                        component="div"
+                        className="text-red-500 text-xs xl:text-[17px] mb-5"
                       />
-
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowPassword((prev) => !prev);
-                        }}
-                        className="mr-5 text-[13px]"
-                      >
-                        {showPassword ? "Show" : "Hide"}
-                      </button>
                     </div>
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="text-red-500 text-xs mb-5"
-                    />
-                  </div>
 
-                  <div className="flex flex-col">
-                    <label className="text-[13px] font-medium mb-2">
-                      Confirm Password
-                    </label>
-                    <div className="border-gray-500 border-2 rounded-3xl mb-4 flex justify-between">
-                      <Field
-                        type={showConfirmPass ? "password" : "text"}
+                    <div className="flex flex-col">
+                      <label className="text-[13px] xl:text-[17px] font-medium mb-2">
+                        Confirm Password
+                      </label>
+                      <div className="border-gray-500 border-2 rounded-3xl mb-4 flex justify-between">
+                        <Field
+                          type={showConfirmPass ? "password" : "text"}
+                          name="confirmPassword"
+                          placeholder="Confirm Password"
+                          className=" rounded-3xl  p-2 focus:outline-none text-[13px] xl:text-[17px] pl-4 "
+                        />
+
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setShowConfirmPass((prev) => !prev);
+                          }}
+                          className=" text-[13px] xl:text-[17px] mr-5"
+                        >
+                          {showConfirmPass ? "Show" : "Hide"}
+                        </button>
+                      </div>
+                      <ErrorMessage
                         name="confirmPassword"
-                        placeholder="Confirm Password"
-                        className=" rounded-3xl  p-2 focus:outline-none text-[13px] pl-4 "
+                        component="div"
+                        className="text-red-500 text-xs xl:text-[17px] mb-5"
                       />
+                    </div>
 
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowConfirmPass((prev) => !prev);
-                        }}
-                        className=" text-[13px] mr-5"
-                      >
-                        {showConfirmPass ? "Show" : "Hide"}
-                      </button>
+                    <div className="flex">
+                      <Field type="checkbox" name="agreeToTerms" />
+                      <label className="text-[13px] xl:text-[17px] ml-2">
+                        By using this form you agree with the storage and
+                        handling of your data by this website.
+                      </label>
                     </div>
                     <ErrorMessage
-                      name="confirmPassword"
+                      name="agreeToTerms"
                       component="div"
-                      className="text-red-500 text-xs mb-5"
+                      className="text-red-500 text-xs xl:text-[17px] mb-5"
                     />
-                  </div>
 
-                  <div className="flex">
-                    <Field type="checkbox" name="agreeToTerms" />
-                    <label className="text-[13px] ml-2">
-                      By using this form you agree with the storage and handling
-                      of your data by this website.
-                    </label>
-                  </div>
-                  <ErrorMessage
-                    name="agreeToTerms"
-                    component="div"
-                    className="text-red-500 text-xs mb-5"
-                  />
-
-                  <div className="flex flex-col md:flex-row justify-between mt-7">
-                    <button
-                      type="button"
-                      className="border-2 rounded-3xl mb-4 p-2 border-black md:w-2/4 md:px-5 md:mr-6 text-[13px] font-bold hover:bg-black hover:text-white"
-                      onClick={() => router.push("/login")}
-                    >
-                      Back
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="border-2 rounded-3xl mb-4 p-2 border-black hover:bg-red-300 hover:border-red-300 bg-black text-white md:w-2/4 md:px-5 text-[13px] font-bold"
-                    >
-                      Create an Account
-                    </button>
-                  </div>
-                </Form>
-              </div>
-            </>
-          )}
-        </Formik>
+                    <div className="flex flex-col md:flex-row justify-between mt-7">
+                      <button
+                        type="button"
+                        className="border-2 rounded-3xl mb-4 p-2 border-black md:w-2/4 md:px-5 md:mr-6 text-[13px] xl:text-[17px] font-bold hover:bg-black hover:text-white"
+                        onClick={() => router.push("/login")}
+                      >
+                        Back
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="border-2 rounded-3xl mb-4 p-2 border-black hover:bg-red-300 hover:border-red-300 bg-black text-white md:w-2/4 md:px-5 text-[13px] xl:text-[17px] font-bold"
+                      >
+                        Create an Account
+                      </button>
+                    </div>
+                  </Form>
+                </div>
+              </>
+            )}
+          </Formik>
+        </div>
       </div>
     </>
   );

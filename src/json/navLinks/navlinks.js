@@ -11,7 +11,7 @@ export const navLinks = [
   },
   {
     id: 3,
-    label: "Product",
-    url: "#",
+    label: "Products",
+    url: "/all-products",
   },
 ];

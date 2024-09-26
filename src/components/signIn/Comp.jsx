@@ -87,72 +87,84 @@ const Comp = () => {
   return (
     <>
       {/* <Image src={login_img} /> */}
-      <div className="flex flex-col md:flex-row justify-between px-6 md:px-12 md:mx-16 mt-16">
-        <div className="md:w-1/2 mr-5 ">
-          <h1 className="text-[18px] font-bold mb-5">Registered Customers</h1>
-          <p className="text-[14px] italic text-gray-500">
-            If you have an account, sign in with your email address.
-          </p>
-          <form className="mt-6" onSubmit={handleLogin}>
-            <div className="flex flex-col ">
-              <label htmlFor="" className="text-[13px] font-semibold mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4 "
-              />
-            </div>
-            <div className="flex flex-col ">
-              <label htmlFor="" className="text-[13px] font-semibold mb-2">
-                Password{" "}
-              </label>
-              <input
-                type="password"
-                name="password"
-                onChange={handleChange}
-                className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4"
-              />
-            </div>
-            <div className="flex">
-              <input type="checkbox" />
-              <label className="text-[13px] ml-2">
-                By using this form you agree with the storage and handling of
-                your data by this website.
-              </label>
-            </div>
-            <div className="flex flex-row justify-between mt-7 md:justify-normal ">
-              <button
-                className=" border-2 rounded-3xl mb-4 p-2 border-black w-1/3 md:px-5 md:mr-6 text-[13px] font-bold bg-black text-white hover:bg-red-300 hover:border-red-300"
-                type="submit"
-              >
-                Sign In
-              </button>
-              <button
-                className=" border-2 rounded-3xl mb-4 p-2 hover:text-red-300 w-2/4 text-[13px] font-bold"
-                type="submit"
-                onClick={handlePasswordReset}
-              >
-                Forget Your Password?
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="md:w-1/2 ">
-          <h1 className="text-[18px] font-bold mb-5">New Customers</h1>
-          <p className="text-[14px]  text-gray-500">
-            By creating an account with our store, you will be able to move
-            through the checkout process faster, store multiple shipping
-            addresses, view and track your orders in your account and more.
-          </p>
-          <button
-            className="mt-10 border-2 rounded-3xl px-6 p-2 border-red-300 hover:bg-black hover:border-black bg-red-300 text-white text-[14px] font-bold"
-            onClick={navigateSignup}
-          >
-            Create An Account
-          </button>
+      <div className=" mx-auto xl:mx-10 my-8 ">
+        <div className="flex flex-col md:flex-row justify-between mt-8 px-5 md:px-10 mx-auto max-w-screen-2xl">
+          <div className="md:w-1/2 mr-5 ">
+            <h1 className="text-[18px] xl:text-xl font-bold mb-5">
+              Registered Customers
+            </h1>
+            <p className="text-[14px] xl:text-[17px] italic text-gray-500">
+              If you have an account, sign in with your email address.
+            </p>
+            <form className="mt-6" onSubmit={handleLogin}>
+              <div className="flex flex-col ">
+                <label
+                  htmlFor=""
+                  className="text-[13px] xl:text-[17px] font-semibold mb-2"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4 "
+                />
+              </div>
+              <div className="flex flex-col ">
+                <label
+                  htmlFor=""
+                  className="text-[13px] xl:text-[17px] font-semibold mb-2"
+                >
+                  Password{" "}
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  className="border-2 rounded-3xl mb-4 p-2 border-gray-500 text-[13px] pl-4"
+                />
+              </div>
+              <div className="flex">
+                <input type="checkbox" />
+                <label className="text-[13px] xl:text-[17px] ml-2">
+                  By using this form you agree with the storage and handling of
+                  your data by this website.
+                </label>
+              </div>
+              <div className="flex flex-row justify-between mt-7 md:justify-normal ">
+                <button
+                  className=" border-2 rounded-3xl mb-4 p-2 border-black w-1/3 md:px-5 md:mr-6 text-[13px] xl:text-[17px] font-bold bg-black text-white hover:bg-red-300 hover:border-red-300"
+                  type="submit"
+                >
+                  Sign In
+                </button>
+                <button
+                  className=" border-2 rounded-3xl mb-4 p-2 hover:text-red-300 w-2/4 text-[13px] xl:text-[17px] font-bold"
+                  type="submit"
+                  onClick={handlePasswordReset}
+                >
+                  Forget Your Password?
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="md:w-1/2 ">
+            <h1 className="text-[18px] xl:text-xl font-bold mb-5">
+              New Customers
+            </h1>
+            <p className="text-[14px] xl:text-[17px] text-gray-500">
+              By creating an account with our store, you will be able to move
+              through the checkout process faster, store multiple shipping
+              addresses, view and track your orders in your account and more.
+            </p>
+            <button
+              className="mt-10 border-2 rounded-3xl px-6 p-2 border-red-300 hover:bg-black hover:border-black bg-red-300 text-white text-[14px] xl:text-[17px] font-bold"
+              onClick={navigateSignup}
+            >
+              Create An Account
+            </button>
+          </div>
         </div>
       </div>
     </>

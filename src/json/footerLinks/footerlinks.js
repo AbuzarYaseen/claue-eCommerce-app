@@ -25,10 +25,12 @@ export const information = [
   {
     id: 1,
     info: "Terms & Conditions",
+    url: "#",
   },
   {
     id: 2,
     info: "Privacy Policy",
+    url: "/privacy-policy",
   },
   // {
   //   id: 3,
