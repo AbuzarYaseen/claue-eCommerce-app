@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux-toolkit-config/slice/slice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Slider } from "@/components/ui/slider";
 import Link from "next/link";
+import { Slider } from "antd";
 
 const CategoryDetails = () => {
   const dispatch = useDispatch();
@@ -19,23 +19,20 @@ const CategoryDetails = () => {
   const categoryProducts = trendingItems.filter(
     (item) => item.cat === category
   );
+  const [priceRange, setPriceRange] = useState([0, 5000]); // Initial range values
+  const [filteredProducts, setFilteredProducts] = useState(categoryProducts);
 
   const [hoveredProductId, setHoveredProductId] = useState(null);
 
-  // State for the slider, with min = 10 and max = 250
-  const [sliderValue, setSliderValue] = useState([10, 250]);
-
-  useEffect(() => {
-    if (categoryProducts.length > 0) {
-      const prices = categoryProducts.map((item) => item.price);
-      const minPrice = Math.min(...prices);
-      const maxPrice = Math.max(...prices);
-      // Set the slider value only if the min/max prices change
-      if (sliderValue[0] !== minPrice || sliderValue[1] !== maxPrice) {
-        setSliderValue([minPrice, maxPrice]);
-      }
-    }
-  }, [categoryProducts, sliderValue]);
+  // Calculate min and max prices based on available products
+  const minPrice = Math.min(
+    ...categoryProducts.map((item) => item.price),
+    Infinity
+  );
+  const maxPrice = Math.max(
+    ...categoryProducts.map((item) => item.price),
+    -Infinity
+  );
 
   const handleHover = (itemId) => {
     setHoveredProductId(itemId);
@@ -51,6 +48,18 @@ const CategoryDetails = () => {
       position: "top-right",
     });
   };
+
+  const handlePriceChange = (value) => {
+    setPriceRange(value);
+  };
+
+  useEffect(() => {
+    // Filter products based on the current price range
+    const newFilteredProducts = categoryProducts.filter(
+      (item) => item.price >= priceRange[0] && item.price <= priceRange[1]
+    );
+    setFilteredProducts(newFilteredProducts);
+  }, [priceRange, categoryProducts]);
 
   if (categoryProducts.length === 0) {
     return <p>No products found in the "{category}" category.</p>;
@@ -81,36 +90,30 @@ const CategoryDetails = () => {
               Browse top items in this category
             </p>
           </span>
-          <div className="flex flex-col md:flex-row gap-6 lg:px-4 mx-auto ">
-            <div className="mt-5 lg:w-1/5 xl:w-1/4">
+          <div className="flex flex-col lg:flex-row gap-6  mx-auto ">
+            <div className="mt-5 lg:w-1/5 xl:w-1/4 flex flex-col  items-center">
               <h1 className="text-[14px] md:text-xl xl:text-2xl font-bold mb-3">
-                Filter by price
+                Filter by Price
               </h1>
-
-              {/* Slider Component */}
-              <Slider
-                defaultValue={sliderValue} // Use the dynamic range
-                max={sliderValue[1]} // Set max to the maximum price
-                step={5}
-                onValueChange={(value) => setSliderValue(value)} // Capture both min and max values
-              />
-
-              {/* Display the selected price range */}
-              <div className="flex justify-between">
-                <span className=" text-[14px] md:text-xl xl:text-2xl font-medium">
-                  ${sliderValue[0]} {/* Minimum value */}
-                </span>
-                <span className=" text-[14px] md:text-xl xl:text-2xl font-medium">
-                  ${sliderValue[1]} {/* Maximum value */}
-                </span>
-              </div>
+              <span className="w-2/4 lg:w-full">
+                <Slider
+                  range
+                  min={minPrice}
+                  max={maxPrice}
+                  defaultValue={[minPrice, maxPrice]}
+                  onChange={handlePriceChange}
+                  value={priceRange}
+                />
+              </span>
+              <p className="text-sm xl:text-[16px]">
+                Price Range: ${priceRange[0]} - ${priceRange[1]}
+              </p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 mt-5 gap-4">
-              {categoryProducts.map((item) => (
+              {filteredProducts.map((item) => (
                 <Link href={`/product-details/${item.id}`} key={item.id}>
                   <div
-                    key={item.id}
                     className="flex flex-col relative hover:cursor-pointer"
                     onMouseEnter={() => handleHover(item.id)}
                     onMouseLeave={handleMouseLeave}

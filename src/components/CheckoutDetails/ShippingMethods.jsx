@@ -48,7 +48,7 @@ const ShippingMethods = () => {
 
   return (
     <>
-      <div className="flex flex-col w-1/3 gap-7">
+      <div className="flex flex-col lg:w-1/3 gap-7">
         <div className="border p-4 pt-5 pb-10">
           <h3 className="border-b text-2xl pb-2 mb-4">Shipping Methods</h3>
 
@@ -63,9 +63,9 @@ const ShippingMethods = () => {
                       name="shipping"
                     />
                   </td>
-                  <td className="px-4 py-2">$ 0.00</td>
-                  <td className="px-4 py-2">Free</td>
-                  <td className="px-4 py-2">Free Shipping</td>
+                  <td className="px-4 py-2 xl:text-lg">$ 0.00</td>
+                  <td className="px-4 py-2 xl:text-lg">Free</td>
+                  <td className="px-4 py-2 xl:text-lg">Free Shipping</td>
                 </tr>
                 <tr onClick={() => handleShippingSelection(20)}>
                   <td className="px-4 py-2">
@@ -75,22 +75,25 @@ const ShippingMethods = () => {
                       name="shipping"
                     />
                   </td>
-                  <td className="px-4 py-2">$ 20.00</td>
-                  <td className="px-4 py-2">Fixed</td>
-                  <td className="px-4 py-2">Flat Rate</td>
+                  <td className="px-4 py-2 xl:text-lg">$ 20.00</td>
+                  <td className="px-4 py-2 xl:text-lg">Fixed</td>
+                  <td className="px-4 py-2 xl:text-lg">Flat Rate</td>
                 </tr>
               </tbody>
             </table>
 
             <div className="flex flex-col mb-4">
-              <label htmlFor="delivery-date" className="text-[14px] mb-3">
+              <label
+                htmlFor="delivery-date"
+                className="text-[14px] xl:text-lg mb-3"
+              >
                 Delivery Date
               </label>
               <input
                 type="text"
                 id="delivery-date"
                 placeholder="Select a delivery date"
-                className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px] cursor-pointer"
+                className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px] xl:text-lg cursor-pointer"
                 value={formatDate(date)} // Show formatted date in the input
                 onClick={() => setShowCalendar((prev) => !prev)} // Toggle calendar visibility
                 readOnly // Make input read-only, user cannot type in it
@@ -103,20 +106,20 @@ const ShippingMethods = () => {
                     mode="single"
                     selected={date}
                     onSelect={handleDateSelect} // Dispatch the selected date
-                    className="rounded-md border"
+                    className="rounded-md border xl:text-lg"
                   />
                 </div>
               ) : null}
             </div>
             <div className="flex flex-col mb-4">
-              <label htmlFor="text" className="text-[14px] mb-3">
+              <label htmlFor="text" className="text-[14px] xl:text-lg mb-3">
                 Dellivery Comment
               </label>
               <textarea
                 rows={3}
                 value={comment} // Show comment value
                 onChange={handleCommentChange}
-                className="border-black border-2 focus:outline-none rounded-2xl py-3 px-4 text-[14px]"
+                className="border-black border-2 focus:outline-none rounded-2xl py-3 px-4 text-[14px] xl:text-lg"
                 placeholder="Enter your comment here..."
               />
             </div>

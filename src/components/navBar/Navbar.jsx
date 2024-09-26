@@ -99,7 +99,7 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <li
                   key={link.id}
-                  className={`cursor-pointer font-bold relative xl:text-[17px] ${
+                  className={`cursor-pointer font-bold relative xl:text-lg ${
                     pathname === link.url
                       ? "text-red-400"
                       : "hover:text-red-300"
@@ -108,11 +108,11 @@ const Navbar = () => {
                   {link.label === "Categories" ? (
                     <DropdownMenu>
                       <DropdownMenuTrigger>
-                        <span className="hover:cursor-pointer xl:text-[17px]">
+                        <span className="hover:cursor-pointer xl:text-lg xl:font-bold">
                           {link.label}
                         </span>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent>
+                      <DropdownMenuContent className="hover:cursor-pointer">
                         {categories.map((category) => (
                           <DropdownMenuItem key={category} asChild>
                             <Link href={`/category-details/${category}`}>
@@ -124,7 +124,9 @@ const Navbar = () => {
                       </DropdownMenuContent>
                     </DropdownMenu>
                   ) : (
-                    <Link href={link.url}>{link.label}</Link>
+                    <Link href={link.url} className="xl:text-[18px]">
+                      {link.label}
+                    </Link>
                   )}
                 </li>
               ))}
@@ -132,8 +134,8 @@ const Navbar = () => {
           </div>
 
           {/* Icons (Search, Shopping Cart, Account) */}
-          <div className="flex w-36 justify-end space-x-4 md:w-36 md:justify-between">
-            <CiSearch size={30} className="hover:cursor-pointer" />
+          <div className="flex w-36 justify-end space-x-4 md:w-36 md:gap-3">
+            {/* <CiSearch size={30} className="hover:cursor-pointer" /> */}
 
             <div className="relative inline-block">
               <CiShoppingCart
@@ -198,9 +200,27 @@ const Navbar = () => {
             <ul className="flex flex-col p-4 space-y-4">
               {navLinks.map((link) => (
                 <li key={link.id} className="text-lg font-bold">
-                  <Link href={link.url} onClick={() => setDrawerOpen(false)}>
-                    {link.label}
-                  </Link>
+                  {link.label === "Categories" ? (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger>
+                        <span className="hover:cursor-pointer xl:text-[17px]">
+                          {link.label}
+                        </span>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="ml-4">
+                        {categories.map((category) => (
+                          <DropdownMenuItem key={category} asChild>
+                            <Link href={`/category-details/${category}`}>
+                              {category.charAt(0).toUpperCase() +
+                                category.slice(1)}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : (
+                    <Link href={link.url}>{link.label}</Link>
+                  )}
                 </li>
               ))}
             </ul>

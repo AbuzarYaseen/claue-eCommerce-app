@@ -86,7 +86,7 @@ const PaymentMethods = () => {
             "cash-on-delivery",
           ].map((paymentMethod) => (
             <div className="flex gap-5 mb-2" key={paymentMethod}>
-              <label className="flex items-center gap-5 cursor-pointer">
+              <label className="flex items-center gap-5 xl:text-lg cursor-pointer">
                 <input
                   type="radio"
                   id={paymentMethod}
@@ -110,12 +110,16 @@ const PaymentMethods = () => {
             </div>
           ))}
           {formik.touched.payment && formik.errors.payment ? (
-            <div className="text-red-500 ">{formik.errors.payment}</div>
+            <div className="text-red-500 xl:text-lg ">
+              {formik.errors.payment}
+            </div>
           ) : touched && !formik.values.payment ? (
-            <div className="text-red-500 ">Payment method is required</div>
+            <div className="text-red-500 xl:text-lg">
+              Payment method is required
+            </div>
           ) : null}
         </div>
-        <div className="mt-3">
+        <div className="mt-3 xl:text-lg">
           <p>My billing and shipping address are the same</p>
         </div>
       </form>

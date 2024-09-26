@@ -34,11 +34,11 @@ const ShippingAddress = () => {
   });
 
   return (
-    <div className="w-1/3 border p-4 pt-5 pb-10">
-      <h3 className="border-b text-2xl pb-2 mb-4">Shipping Address</h3>
+    <div className="lg:w-1/3 border p-4 pt-5 pb-10">
+      <h3 className="border-b text-2xl pb-2 mb-4 ">Shipping Address</h3>
       <form onSubmit={formik.handleSubmit}>
         <div className="flex flex-col mb-4">
-          <label htmlFor="email" className="text-[14px] mb-3">
+          <label htmlFor="email" className="text-[14px] xl:text-lg mb-3">
             Email Address
           </label>
           <input
@@ -47,10 +47,12 @@ const ShippingAddress = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
-            className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px]"
+            className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px] xl:text-lg"
           />
           {formik.touched.email && formik.errors.email ? (
-            <div className="text-red-500 text-xs">{formik.errors.email}</div>
+            <div className="text-red-500 text-xs xl:text-lg">
+              {formik.errors.email}
+            </div>
           ) : null}
         </div>
 
@@ -59,13 +61,13 @@ const ShippingAddress = () => {
             type="checkbox"
             onChange={() => setCreateAccount(!createAccount)}
           />
-          <p className="text-[14px] font-medium">Create account</p>
+          <p className="text-[14px] font-medium xl:text-lg">Create account</p>
         </div>
 
         {createAccount && (
           <>
             <div className="flex flex-col mb-4">
-              <label htmlFor="password" className="text-[14px] mb-3">
+              <label htmlFor="password" className="text-[14px] xl:text-lg mb-3">
                 Password
               </label>
               <input
@@ -74,17 +76,20 @@ const ShippingAddress = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
-                className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px]"
+                className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px] xl:text-lg"
               />
               {formik.touched.password && formik.errors.password ? (
-                <div className="text-red-500 text-xs">
+                <div className="text-red-500 text-xs xl:text-lg">
                   {formik.errors.password}
                 </div>
               ) : null}
             </div>
 
             <div className="flex flex-col mb-4">
-              <label htmlFor="confirmPassword" className="text-[14px] mb-3">
+              <label
+                htmlFor="confirmPassword"
+                className="text-[14px] mb-3 xl:text-lg"
+              >
                 Confirm Password
               </label>
               <input
@@ -93,11 +98,11 @@ const ShippingAddress = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.confirmPassword}
-                className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px]"
+                className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px] xl:text-lg"
               />
               {formik.touched.confirmPassword &&
               formik.errors.confirmPassword ? (
-                <div className="text-red-500 text-xs">
+                <div className="text-red-500 text-xs xl:text-lg">
                   {formik.errors.confirmPassword}
                 </div>
               ) : null}
@@ -117,7 +122,7 @@ const ShippingAddress = () => {
           "phoneNumber",
         ].map((field) => (
           <div className="flex flex-col mb-4" key={field}>
-            <label htmlFor={field} className="text-[14px] mb-3">
+            <label htmlFor={field} className="text-[14px] xl:text-lg mb-3">
               {field.charAt(0).toUpperCase() +
                 field.slice(1).replace(/([A-Z])/g, " $1")}
             </label>
@@ -137,7 +142,7 @@ const ShippingAddress = () => {
 
         <button
           type="submit"
-          className="bg-black hover:bg-[#D19C88] text-white rounded-3xl py-2 px-5 mt-4"
+          className="bg-black hover:bg-[#D19C88] text-white rounded-3xl py-2 px-5 mt-4 xl:text-lg"
         >
           Save
         </button>
