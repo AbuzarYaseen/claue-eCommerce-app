@@ -67,7 +67,6 @@ const Register = () => {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        pass: password,
       });
       console.log("data saved to db");
     } catch (error) {

@@ -99,7 +99,6 @@ const ShippingMethods = () => {
                 readOnly // Make input read-only, user cannot type in it
               />
 
-              {/* Use ternary operator to show/hide the calendar */}
               {showCalendar ? (
                 <div className="mt-2">
                   <Calendar

@@ -35,9 +35,6 @@ const OrderSummary = () => {
   const shippingDetails = useSelector(
     (state) => state.shippingDetails.shippingAddressData
   );
-  const deliveryDate = useSelector(
-    (state) => state.shippingDetails.deliveryDate
-  );
   const deliveryComment = useSelector(
     (state) => state.shippingDetails.deliveryComment
   );
@@ -63,43 +60,26 @@ const OrderSummary = () => {
   const orderTotal = subTotal + shippingAmount;
 
   const handlePlaceOrder = async () => {
-    const user = auth.currentUser; // Get the current authenticated user
+    // Order details to send to Firebase
+    const orderData = {
+      shippingDetails: shippingDetails,
+      deliveryComment: deliveryComment,
+      paymentMethod: paymentMethod,
+      subTotal: subTotal,
+      shippingAmount: shippingAmount,
+      orderTotal: orderTotal,
+      orderComment: comment,
+      // placedAt: new Date().toISOString(), // Timestamp for order
+    };
 
     if (!isChecked) {
       setError(true); // Show error if terms are not accepted
     } else {
       setError(false);
 
-      if (!user) {
-        toast.error("Login first to place order.", {
-          position: "top-right",
-        }); // Show error toast if user is not logged in
-
-        setTimeout(() => {
-          router.push("/login");
-        }, 2000);
-
-        return; // Exit early if not logged in
-      }
-
-      // Order details to send to Firebase
-      const orderData = {
-        userId: user.uid,
-        email: user.email,
-        shippingDetails: shippingDetails,
-        deliveryDate: deliveryDate,
-        deliveryComment: deliveryComment,
-        paymentMethod: paymentMethod,
-        subTotal: subTotal,
-        shippingAmount: shippingAmount,
-        orderTotal: orderTotal,
-        orderComment: comment,
-        // placedAt: new Date().toISOString(), // Timestamp for order
-      };
-
       try {
-        // Generate a new document in the 'orders' collection with the user's ID
-        await setDoc(doc(db, "orders", user.uid), orderData);
+        // Generate a new document in the 'orders' collection (without user data)
+        await setDoc(doc(db, "orders", "order-id"), orderData); // Replace "order-id" with a unique ID generator
         toast.success("Order placed successfully!", {
           position: "top-right",
         });

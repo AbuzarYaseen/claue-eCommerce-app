@@ -13,9 +13,9 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <>
-      <div className=" mx-auto xl:mx-10 my-8 ">
-        <div className=" mt-8 px-5 md:px-10 mx-auto max-w-screen-2xl">
-          <div className="bg-[#F6F6F8] px-4 xl:px-14 grid  items-center mt-4 py-16">
+      <div className=" my-8 bg-[#F6F6F8]">
+        <div className=" mt-8 px-5 mx-auto max-w-screen-2xl">
+          <div className="px-4 xl:px-14 grid  items-center mt-4 py-16">
             <div className="grid  md:grid-cols-2 md:grid-rows-2 xl:grid-cols-5 xl:grid-rows-1 ">
               <ul className="flex flex-col md:mr-5 pr-6 mt-8">
                 <li className="mb-8">
