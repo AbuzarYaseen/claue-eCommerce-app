@@ -31,7 +31,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-3">
                   <span className="flex items-center">
-                    <CiMail clas />
+                    <CiMail className="text-base xl:text-xl" />
                     <span className="pl-3 text-[14px] xl:text-[17px]">
                       contact@company.com
                     </span>

@@ -35,12 +35,6 @@ const ShippingMethods = () => {
     // console.log("shipment amount: ", amount);
   };
 
-  const handleDateSelect = (newDate) => {
-    setDate(newDate);
-    dispatch(setDeliveryDate(newDate)); // Dispatch selected date to Redux store
-    setShowCalendar(false); // Hide calendar after date is selected
-  };
-
   const handleCommentChange = (e) => {
     setComment(e.target.value);
     dispatch(setDeliveryComment(e.target.value)); // Dispatch comment to Redux store
@@ -82,34 +76,6 @@ const ShippingMethods = () => {
               </tbody>
             </table>
 
-            {/* <div className="flex flex-col mb-4">
-              <label
-                htmlFor="delivery-date"
-                className="text-[14px] xl:text-lg mb-3"
-              >
-                Delivery Date
-              </label>
-              <input
-                type="text"
-                id="delivery-date"
-                placeholder="Select a delivery date"
-                className="border-black border-2 focus:outline-none rounded-3xl py-3 px-4 text-[14px] xl:text-lg cursor-pointer"
-                value={formatDate(date)} // Show formatted date in the input
-                onClick={() => setShowCalendar((prev) => !prev)} // Toggle calendar visibility
-                readOnly // Make input read-only, user cannot type in it
-              />
-
-              {showCalendar ? (
-                <div className="mt-2">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={handleDateSelect} // Dispatch the selected date
-                    className="rounded-md border xl:text-lg"
-                  />
-                </div>
-              ) : null}
-            </div> */}
             <div className="flex flex-col mb-4">
               <label htmlFor="text" className="text-[14px] xl:text-lg mb-3">
                 Dellivery Comment
