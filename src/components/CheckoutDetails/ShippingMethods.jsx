@@ -82,7 +82,7 @@ const ShippingMethods = () => {
               </tbody>
             </table>
 
-            <div className="flex flex-col mb-4">
+            {/* <div className="flex flex-col mb-4">
               <label
                 htmlFor="delivery-date"
                 className="text-[14px] xl:text-lg mb-3"
@@ -109,7 +109,7 @@ const ShippingMethods = () => {
                   />
                 </div>
               ) : null}
-            </div>
+            </div> */}
             <div className="flex flex-col mb-4">
               <label htmlFor="text" className="text-[14px] xl:text-lg mb-3">
                 Dellivery Comment
