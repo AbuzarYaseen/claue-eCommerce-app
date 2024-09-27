@@ -11,7 +11,7 @@ import { setOrderComment } from "@/redux-toolkit-config/slice/shippingDetailsSli
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth, db } from "../../../firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
 const OrderSummary = () => {
@@ -79,7 +79,7 @@ const OrderSummary = () => {
 
       try {
         // Generate a new document in the 'orders' collection (without user data)
-        await setDoc(doc(db, "orders", "order-id"), orderData); // Replace "order-id" with a unique ID generator
+        await addDoc(collection(db, "orders"), orderData);
         toast.success("Order placed successfully!", {
           position: "top-right",
         });
