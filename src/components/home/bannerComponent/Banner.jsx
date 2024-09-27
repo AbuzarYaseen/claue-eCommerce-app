@@ -14,6 +14,7 @@ const BannerComponent = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024, // Tablet (up to 1024px)
@@ -30,7 +31,7 @@ const BannerComponent = () => {
     ],
   };
   return (
-    <div className="mx-auto xl:mx-10 my-8 ">
+    <div className="mx-auto my-8 bg-[#E2DAD3]">
       <div className="mt-8 px-5 md:px-10 xl:w-full mx-auto max-w-screen-2xl ">
         <Slider {...settings}>
           {/* First slide */}
