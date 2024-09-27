@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { addToCart } from "@/redux-toolkit-config/slice/slice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
+import { CiShoppingCart } from "react-icons/ci";
 
 const Trending = () => {
   // State for handling item hover
@@ -54,10 +55,21 @@ const Trending = () => {
                       onMouseEnter={() => handleHover(item.id)}
                       onMouseLeave={handleMouseLeave}
                     >
+                      {/* Show cart icon only on mobile screens */}
+                      <button
+                        className="absolute top-2 right-2 md:hidden bg-white text-black hover:bg-black hover:text-white rounded-full p-2"
+                        onClick={() => handleAddToCartButtonClick(item)}
+                      >
+                        <CiShoppingCart
+                          size={25}
+                          className="hover:cursor-pointer "
+                        />
+                      </button>
+                      {/* Show "Add to Cart" button on hover for larger screens */}
                       {hoveredProductId === item.id && (
                         <>
                           <button
-                            className="absolute top-28 font-semibold text-[14px] xl:text-xl left-7 md:top-1/2 md:left-12  lg:left-1/3 xl:left-1/4 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
+                            className="hidden md:block absolute top-28 font-semibold text-[14px] xl:text-xl left-7 md:top-1/2 md:left-12  lg:left-1/3 xl:left-1/4 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
                             onClick={() => handleAddToCartButtonClick(item)}
                           >
                             Add to cart
