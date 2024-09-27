@@ -167,15 +167,17 @@ const Navbar = () => {
                   </>
                 ) : (
                   <>
-                    <DropdownMenuItem>
-                      <Link href="/login" className="hover:cursor-pointer">
-                        Sign in
-                      </Link>
+                    <DropdownMenuItem
+                      onSelect={() => router.push("/login")}
+                      className="hover:cursor-pointer"
+                    >
+                      Sign in
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Link href="/signup" className="hover:cursor-pointer">
-                        Create An Account
-                      </Link>
+                    <DropdownMenuItem
+                      onSelect={() => router.push("/signup")}
+                      className="hover:cursor-pointer"
+                    >
+                      Create An Account
                     </DropdownMenuItem>
                   </>
                 )}
