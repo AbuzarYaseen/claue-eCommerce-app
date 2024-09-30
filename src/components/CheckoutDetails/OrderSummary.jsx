@@ -201,6 +201,7 @@ const OrderSummary = () => {
       <button
         className="w-full py-3 mt-7 rounded-full bg-black text-white hover:bg-[#D19C88] xl:text-lg"
         onClick={handlePlaceOrder}
+        disabled={loading}
       >
         {loading ? <Spin /> : "PLACE ORDER"}
       </button>
