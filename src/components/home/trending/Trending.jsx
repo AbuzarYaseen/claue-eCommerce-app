@@ -1,6 +1,6 @@
 "use client";
 import { trendingItems } from "@/json/home/homeData";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,11 +8,35 @@ import { addToCart } from "@/redux-toolkit-config/slice/slice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { CiShoppingCart } from "react-icons/ci";
+import { db } from "../../../../firebaseConfig";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const Trending = () => {
   // State for handling item hover
   const [hoveredProductId, setHoveredProductId] = useState(null);
+  const [trending, setTrending] = useState([]);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    //Creating an async function to fetch data from Firestore
+    const fetchData = async () => {
+      const q = query(
+        collection(db, "products"),
+        where("trending", "==", true)
+      );
+
+      const querySnapshot = await getDocs(q);
+      const terndingProducts = [];
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.data());
+        terndingProducts.push(doc.data());
+      });
+      setTrending(terndingProducts);
+      // console.log("trending Products", terndingProducts);
+    };
+    fetchData().catch(console.error);
+  }, []);
 
   // Function to handle product hover
   const handleHover = (itemId) => {
@@ -46,7 +70,7 @@ const Trending = () => {
               </p>
             </span>
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 mt-5 gap-4 ">
-              {trendingItems.slice(8, 16).map((item) => {
+              {trending.map((item) => {
                 return (
                   <div
                     key={item.id}

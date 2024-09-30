@@ -2,29 +2,60 @@
 import { trendingItems } from "@/json/home/homeData";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addToCart } from "@/redux-toolkit-config/slice/slice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { CiShoppingCart } from "react-icons/ci";
 import { Slider } from "antd"; // Import Ant Design Slider
+import { db } from "../../../firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
 
 const AllProducts = () => {
   const [hoveredProductId, setHoveredProductId] = useState(null);
-  const [filteredProducts, setFilteredProducts] = useState(trendingItems);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState(products);
   const [priceRange, setPriceRange] = useState([0, 5000]); // Initial range values
   const dispatch = useDispatch();
 
-  // Calculate min and max prices based on available products
-  const minPrice = Math.min(
-    ...trendingItems.map((item) => item.price),
-    Infinity
-  );
-  const maxPrice = Math.max(
-    ...trendingItems.map((item) => item.price),
-    -Infinity
-  );
+  useEffect(() => {
+    //Creating an async function to fetch data from Firestore
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collection(db, "products"));
+      const allProducts = [];
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.data());
+        allProducts.push(doc.data());
+      });
+      setProducts(allProducts);
+      // console.log("all products", allProducts);
+    };
+    fetchData().catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    // Calculate min and max prices based on available products
+    if (products.length > 0) {
+      const minPrice = Math.min(...products.map((item) => item.price));
+      const maxPrice = Math.max(...products.map((item) => item.price));
+
+      // Set initial price range based on min and max prices
+      setPriceRange([minPrice, maxPrice]);
+      setFilteredProducts(products); // Show all initially
+    } else {
+      setFilteredProducts([]);
+    }
+  }, [products]);
+
+  // // Calculate min and max prices based on available products
+  // const minPrice = products.length
+  //   ? Math.min(...products.map((item) => item.price))
+  //   : 0;
+  // const maxPrice = products.length
+  //   ? Math.max(...products.map((item) => item.price))
+  //   : 5000;
 
   // Function to handle product hover
   const handleHover = (itemId) => {
@@ -51,7 +82,7 @@ const AllProducts = () => {
 
   useEffect(() => {
     // Filter products based on the current price range
-    const newFilteredProducts = trendingItems.filter(
+    const newFilteredProducts = products.filter(
       (item) => item.price >= priceRange[0] && item.price <= priceRange[1]
     );
     setFilteredProducts(newFilteredProducts);
@@ -84,9 +115,9 @@ const AllProducts = () => {
             <span className="w-2/4 lg:w-full">
               <Slider
                 range
-                min={minPrice}
-                max={maxPrice}
-                defaultValue={[minPrice, maxPrice]}
+                min={priceRange[0]}
+                max={priceRange[1]}
+                // defaultValue={[minPrice, maxPrice]}
                 onChange={handlePriceChange}
                 value={priceRange}
               />
