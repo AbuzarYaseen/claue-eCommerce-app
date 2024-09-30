@@ -8,20 +8,24 @@ import { addToCart } from "@/redux-toolkit-config/slice/slice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { CiShoppingCart } from "react-icons/ci";
-import { Slider } from "antd"; // Import Ant Design Slider
+import { Slider, Skeleton } from "antd"; // Import Ant Design Slider, skeleton
 import { db } from "../../../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
+import { useMediaQuery } from "react-responsive";
 
 const AllProducts = () => {
   const [hoveredProductId, setHoveredProductId] = useState(null);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [priceRange, setPriceRange] = useState([0, 5000]); // Initial range values
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
 
   useEffect(() => {
     //Creating an async function to fetch data from Firestore
     const fetchData = async () => {
+      setLoading(true);
       const querySnapshot = await getDocs(collection(db, "products"));
       const allProducts = [];
       querySnapshot.forEach((doc) => {
@@ -30,6 +34,7 @@ const AllProducts = () => {
         allProducts.push(doc.data());
       });
       setProducts(allProducts);
+      setLoading(false);
       // console.log("all products", allProducts);
     };
     fetchData().catch(console.error);
@@ -128,51 +133,65 @@ const AllProducts = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 mt-5 gap-4">
-            {filteredProducts.map((item) => {
-              return (
-                <div
-                  key={item.id}
-                  className="flex flex-col relative hover:cursor-pointer"
-                  onMouseEnter={() => handleHover(item.id)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {/* Show cart icon only on mobile screens */}
-                  <button
-                    className="absolute top-2 right-2 md:hidden bg-white text-black hover:bg-black hover:text-white rounded-full p-2"
-                    onClick={() => handleAddToCartButtonClick(item)}
-                  >
-                    <CiShoppingCart
-                      size={25}
-                      className="hover:cursor-pointer "
+            {loading
+              ? Array.from({ length: 8 }).map((_, index) => (
+                  <div className="flex flex-col w-full gap-5">
+                    <Skeleton.Image
+                      style={{
+                        width: isMobile ? 150 : 230,
+                        height: isMobile ? 200 : 300,
+                      }}
                     />
-                  </button>
-                  {/* Show "Add to Cart" button on hover for larger screens */}
-                  {hoveredProductId === item.id && (
-                    <>
+                    <Skeleton />
+                  </div>
+                ))
+              : filteredProducts.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      className="flex flex-col relative hover:cursor-pointer"
+                      onMouseEnter={() => handleHover(item.id)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      {/* Show cart icon only on mobile screens */}
                       <button
-                        className="hidden md:block absolute top-28 font-semibold text-[14px] xl:text-xl left-7 md:top-1/2 md:left-12 lg:left-1/3 xl:left-1/4 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
+                        className="absolute top-2 right-2 md:hidden bg-white text-black hover:bg-black hover:text-white rounded-full p-2"
                         onClick={() => handleAddToCartButtonClick(item)}
                       >
-                        Add to cart
+                        <CiShoppingCart
+                          size={25}
+                          className="hover:cursor-pointer "
+                        />
                       </button>
-                    </>
-                  )}
-                  <Link href={`/product-details/${item.id}`} key={item.id}>
-                    <Image
-                      width={340}
-                      height={300}
-                      src={item.url}
-                      alt="product"
-                    />
-                    <p className="mt-3 text-[14px] xl:text-xl md:font-bold">
-                      {item.itemName}
-                    </p>
-                    <p className="text-[14px] xl:text-xl">{item.price}</p>
-                    <p className="text-[14px] xl:text-xl">{item.rating}⭐</p>
-                  </Link>
-                </div>
-              );
-            })}
+                      {/* Show "Add to Cart" button on hover for larger screens */}
+                      {hoveredProductId === item.id && (
+                        <>
+                          <button
+                            className="hidden md:block absolute top-28 font-semibold text-[14px] xl:text-xl left-7 md:top-1/2 md:left-12 lg:left-1/3 xl:left-1/4 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
+                            onClick={() => handleAddToCartButtonClick(item)}
+                          >
+                            Add to cart
+                          </button>
+                        </>
+                      )}
+                      <Link href={`/product-details/${item.id}`} key={item.id}>
+                        <Image
+                          width={340}
+                          height={300}
+                          src={item.url}
+                          alt="product"
+                        />
+                        <p className="mt-3 text-[14px] xl:text-xl md:font-bold">
+                          {item.itemName}
+                        </p>
+                        <p className="text-[14px] xl:text-xl">{item.price}</p>
+                        <p className="text-[14px] xl:text-xl">
+                          {item.rating}⭐
+                        </p>
+                      </Link>
+                    </div>
+                  );
+                })}
           </div>
         </div>
       </div>

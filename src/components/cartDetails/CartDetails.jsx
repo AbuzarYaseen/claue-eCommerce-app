@@ -76,7 +76,7 @@ const CartDetails = () => {
                       >
                         <td className="md:py-3 md:px-6 text-left flex items-center">
                           <Image
-                            src={item.url.src}
+                            src={item.url}
                             alt={item.itemName}
                             width={120}
                             height={150}

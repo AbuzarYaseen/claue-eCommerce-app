@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { auth, db } from "../../../firebaseConfig";
 import { doc, addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import { Spin } from "antd";
 
 const OrderSummary = () => {
   const [viewCartItems, setViewCartItems] = useState(false);
@@ -25,6 +26,7 @@ const OrderSummary = () => {
   });
   const subTotal = useSelector((state) => state.cart.totalAmount);
   const cartItems = useSelector((state) => state.cart.cart);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const shippingAmount = useSelector(
     (state) => state.shippingDetails.shippingAmount
@@ -76,6 +78,7 @@ const OrderSummary = () => {
       setError(true); // Show error if terms are not accepted
     } else {
       setError(false);
+      setLoading(true);
 
       try {
         // Generate a new document in the 'orders' collection (without user data)
@@ -88,6 +91,8 @@ const OrderSummary = () => {
         toast.error("Failed to place order. Please try again.", {
           position: "top-right",
         });
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -197,7 +202,7 @@ const OrderSummary = () => {
         className="w-full py-3 mt-7 rounded-full bg-black text-white hover:bg-[#D19C88] xl:text-lg"
         onClick={handlePlaceOrder}
       >
-        PLACE ORDER
+        {loading ? <Spin /> : "PLACE ORDER"}
       </button>
     </div>
   );

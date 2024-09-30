@@ -7,10 +7,11 @@ import { addToCart } from "@/redux-toolkit-config/slice/slice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
-import { Slider } from "antd";
+import { Slider, Skeleton } from "antd";
 import { CiShoppingCart } from "react-icons/ci";
 import { db } from "../../../../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
+import { useMediaQuery } from "react-responsive";
 
 const CategoryDetails = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ const CategoryDetails = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [hoveredProductId, setHoveredProductId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
 
   useEffect(() => {
     // Fetch data from Firestore
@@ -31,6 +34,7 @@ const CategoryDetails = () => {
         allProducts.push(doc.data());
       });
       setProducts(allProducts);
+      setLoading(false);
     };
     fetchData().catch(console.error);
   }, []);
@@ -78,10 +82,6 @@ const CategoryDetails = () => {
     setPriceRange(value);
   };
 
-  if (products.length === 0) {
-    return <p>Loading products in the "{category}" category.</p>;
-  }
-
   return (
     <div className="mx-auto xl:mx-10 my-8">
       <div className="mt-8 px-5 md:px-10 mx-auto max-w-screen-2xl">
@@ -114,46 +114,58 @@ const CategoryDetails = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 mt-5 gap-4">
-            {filteredProducts.map((item) => (
-              <div
-                key={item.id}
-                className="flex flex-col relative hover:cursor-pointer"
-                onMouseEnter={() => handleHover(item.id)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button
-                  className="absolute top-2 right-2 md:hidden bg-white text-black hover:bg-black hover:text-white rounded-full p-2"
-                  onClick={() => handleAddToCartButtonClick(item)}
-                >
-                  <CiShoppingCart size={25} />
-                </button>
-                {hoveredProductId === item.id && (
-                  <button
-                    className="hidden md:block absolute top-28 font-semibold text-[14px] xl:text-xl left-7 md:top-1/2 md:left-12 lg:top-2/4 lg:left-1/4 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
-                    onClick={() => handleAddToCartButtonClick(item)}
+            {loading
+              ? Array.from({ length: 8 }).map((_, index) => (
+                  <div className="flex flex-col w-full gap-5">
+                    <Skeleton.Image
+                      style={{
+                        width: isMobile ? 150 : 230,
+                        height: isMobile ? 200 : 300,
+                      }}
+                    />
+                    <Skeleton />
+                  </div>
+                ))
+              : filteredProducts.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex flex-col relative hover:cursor-pointer"
+                    onMouseEnter={() => handleHover(item.id)}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    Add to cart
-                  </button>
-                )}
-                <Link href={`/product-details/${item.id}`}>
-                  <Image
-                    width={250}
-                    height={300}
-                    src={item.url}
-                    alt={item.itemName}
-                  />
-                  <p className="mt-3 text-[14px] md:text-xl xl:text-xl md:font-bold">
-                    {item.itemName}
-                  </p>
-                  <p className="text-[14px] md:text-xl xl:text-xl">
-                    ${item.price}
-                  </p>
-                  <p className="text-[14px] md:text-xl xl:text-xl">
-                    {item.rating} ⭐
-                  </p>
-                </Link>
-              </div>
-            ))}
+                    <button
+                      className="absolute top-2 right-2 md:hidden bg-white text-black hover:bg-black hover:text-white rounded-full p-2"
+                      onClick={() => handleAddToCartButtonClick(item)}
+                    >
+                      <CiShoppingCart size={25} />
+                    </button>
+                    {hoveredProductId === item.id && (
+                      <button
+                        className="hidden md:block absolute top-28 font-semibold text-[14px] xl:text-xl left-7 md:top-1/2 md:left-12 lg:top-2/4 lg:left-1/4 bg-white text-black hover:bg-black hover:text-white rounded-3xl md:font-bold p-2 px-4"
+                        onClick={() => handleAddToCartButtonClick(item)}
+                      >
+                        Add to cart
+                      </button>
+                    )}
+                    <Link href={`/product-details/${item.id}`}>
+                      <Image
+                        width={250}
+                        height={300}
+                        src={item.url}
+                        alt={item.itemName}
+                      />
+                      <p className="mt-3 text-[14px] md:text-xl xl:text-xl md:font-bold">
+                        {item.itemName}
+                      </p>
+                      <p className="text-[14px] md:text-xl xl:text-xl">
+                        ${item.price}
+                      </p>
+                      <p className="text-[14px] md:text-xl xl:text-xl">
+                        {item.rating} ⭐
+                      </p>
+                    </Link>
+                  </div>
+                ))}
           </div>
         </div>
       </div>
